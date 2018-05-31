@@ -136,4 +136,7 @@ Engineering multilevel overlay graphs for shortest-path queries & 2018-05-29 &
 holzer2009\\
 \hline
 Dynamic multi-level overlay graohs or shortest paths & 2018-05-30 & bruera2008\\
+\hline
+Amélioration de la représentation cartographique des phénomènes urbains &
+2018-05-31 & hapham2017 \\
 \end{tabular}
