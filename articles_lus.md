@@ -130,7 +130,7 @@ A Common-Sens Theory of Time & 2018-05-24 & allen1985 \\
 \hline
 Dynamic Graph Models & 2018-05-25 & harary1997 \\
 \hline
-A Spatial Logic based on Regions and Connection & 2018-05-28 & randell1992.md \\
+A Spatial Logic based on Regions and Connection & 2018-05-28 & randell1992 \\
 \hline
 Engineering multilevel overlay graphs for shortest-path queries & 2018-05-29 &
 holzer2009\\
@@ -139,4 +139,6 @@ Dynamic multi-level overlay graohs or shortest paths & 2018-05-30 & bruera2008\\
 \hline
 Amélioration de la représentation cartographique des phénomènes urbains &
 2018-05-31 & hapham2017 \\
+\hline
+Use of grpah theory to support generalisation & 2018-06-01 & mackaness1993 \\
 \end{tabular}
