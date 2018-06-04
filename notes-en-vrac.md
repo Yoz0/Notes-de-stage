@@ -104,3 +104,8 @@
   l'algorithme de plus court chemins pour deux agents différents si ils ont les
   mêms connaissances. Et vu la quantité d'agents il va y avoir bcp d'agents avec
   les mêmes connaissances.
+
+# 2018-06-01
+
+* J'ai essayé de lire "Topology of Spatial Graphs" de Kawauchi en 2008, mais je
+  comprends vraiment pas.
