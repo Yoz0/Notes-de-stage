@@ -144,4 +144,7 @@ Use of grpah theory to support generalisation & 2018-06-01 & mackaness1993 \\
 \hline
 A graph theory framework for evaluating landscape connectivity and conservation
 planning & 2018-06-04 & minor2008 \\
+\hline
+Un système de génération d'itinéraires des activités mobiles dans la ville &
+2018-06-04 & jguirim2015 \\
 \end{tabular}
