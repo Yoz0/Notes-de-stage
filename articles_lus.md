@@ -149,4 +149,7 @@ Un système de génération d'itinéraires des activités mobiles dans la ville 
 2018-06-04 & jguirim2015 \\
 \hline
 What about people in regional science? & 2018-06-05 & hagerstrand1970 \\
+\hline
+Algorithms for continuous location dependent and context-aware queries in indoor
+environments & 2018-06-06 & afyouni2012.md \\
 \end{tabular}

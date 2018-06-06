@@ -109,3 +109,5 @@
 
 * J'ai essayé de lire "Topology of Spatial Graphs" de Kawauchi en 2008, mais je
   comprends vraiment pas.
+
+* Il y a un ordre dans les références bibliographiques ?
