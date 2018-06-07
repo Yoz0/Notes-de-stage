@@ -152,4 +152,7 @@ What about people in regional science? & 2018-06-05 & hagerstrand1970 \\
 \hline
 Algorithms for continuous location dependent and context-aware queries in indoor
 environments & 2018-06-06 & afyouni2012 \\
+\hline
+The maptree: A fine-grained formal representation of space & 2018-06-07 &
+worboys2012 \\
 \end{tabular}
