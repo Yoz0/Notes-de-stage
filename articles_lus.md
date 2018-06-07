@@ -140,7 +140,7 @@ Dynamic multi-level overlay graohs or shortest paths & 2018-05-30 & bruera2008\\
 Amélioration de la représentation cartographique des phénomènes urbains &
 2018-05-31 & hapham2017 \\
 \hline
-Use of grpah theory to support generalisation & 2018-06-01 & mackaness1993 \\
+Use of graph theory to support generalisation & 2018-06-01 & mackaness1993 \\
 \hline
 A graph theory framework for evaluating landscape connectivity and conservation
 planning & 2018-06-04 & minor2008 \\
@@ -151,5 +151,5 @@ Un système de génération d'itinéraires des activités mobiles dans la ville 
 What about people in regional science? & 2018-06-05 & hagerstrand1970 \\
 \hline
 Algorithms for continuous location dependent and context-aware queries in indoor
-environments & 2018-06-06 & afyouni2012.md \\
+environments & 2018-06-06 & afyouni2012 \\
 \end{tabular}

@@ -111,3 +111,11 @@
   comprends vraiment pas.
 
 * Il y a un ordre dans les références bibliographiques ?
+
+# 2018-06-07
+
+* Parler à Kamal
+
+* Faire une synthese
+
+* Conférence EGC
