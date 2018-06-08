@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\title{Synthèse des articles lus}
+\author{Stéphane Kastenbaum}
+
+\begin{document}
+
+\maketitle
+
+\section{Problématique}
+\subsection{Escape}
+
+Escape est un projet de logiciel pour modéliser les évacuations de villes en cas
+d'une crise (comme l'explosion d'une usine, ou bien l'inondation d'un pont).
+Ces crises peuvent modifier l'espace de ville, comme interdir l'accès de
+certaines zone aux piétons, ou bien couper un pont. Ce qui évidemment gêne
+l'évacuation de la population, et doit donc être pris en compte dans la
+modélisation.
+
+Escape sera donc une simulation multi-agents où les angets seronts des piétons
+ou des automobilistes qui se déplaceront dans l'espace, tandis qu'il ne
+connaitront pas parfaitement cet espace.
+
+\subsection{Représentation spatiales}
+
+On doit donc décider d'une facon de modéliser l'espace permettant aux agents de
+se déplacer dans celui-ci. Il faut que les agents puissent savoir où ils sont,
+et quel chemin il doivent prendre pour aller là où ils veulent.
+
+\subsection{Relations spatio-temporels}
+
+L'espace peut être amené à se modifier au cours de la simulation, la crue peut
+monter et bloquer d'autres ponts, ou un nuage toxique peut se déplacer par 
+exemple. Il est donc important de prévoir une modélisation qui peut facilement
+être modifiée.
+
+\subsection{Diversités des connaissances}
+
+Dans une ville, il se peut que les agents n'aient pas les mêmes connaissances
+de l'espace, par exemple certaines personnes peuvent connaître certaines rues
+ou des raccourcis que d'autres ne connaîssent pas. Cela va évidemment influer
+sur les choix des agents, ainsi la modélisation se doit de pouvoir représenter
+cette diversité.
+
+\subsubsection{Modification dynamique de la connaissance}
+
+Au cours de la simulation, les agents vont percevoir l'espace et leurs
+connaissancesde l'espace vont être modifié en conséquence. Il faut donc prévoir
+que les connaissances de chacuns peuvent être modifiée.
+
+\subsection{Limitations techniques}
+
+La ville étant un espace grand est complexe, et le nombre d'agents gigantesque,
+il va falloir faire très attention à la taille mémoire que va prendre la
+modélisation et à la quantité de calculs nécessaire à la simulation.
+
+\section{État de l'art}
+
+\end{document}

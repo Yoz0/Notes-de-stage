@@ -9,7 +9,7 @@ Titre
 
 ![légende](modele.png)
 
-# Modélisations 
+# Modélisations
 
 # Commentaires
 

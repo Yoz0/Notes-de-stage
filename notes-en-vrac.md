@@ -119,3 +119,8 @@
 * Faire une synthese
 
 * Conférence EGC
+
+* **Idée de modélisations** : Au lieu de se faire chier à calculer les plus
+  courts chemins pour chaque agents, on pourrait dire qu'ils connaissent la
+  position relative de leur objectif ("C'est au Nord") et qu'ils essaient de
+  prendre le chemin le plus droits pour y aller.
