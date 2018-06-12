@@ -155,4 +155,7 @@ environments & 2018-06-06 & afyouni2012 \\
 \hline
 The maptree: A fine-grained formal representation of space & 2018-06-07 &
 worboys2012 \\
+\hline
+Representing and reasoning about changing spatial extensions of geographic
+features & 2018-06-11 & campelo2013
 \end{tabular}
