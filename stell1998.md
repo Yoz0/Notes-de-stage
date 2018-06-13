@@ -1,5 +1,5 @@
 % Fiche de lecture  
-Stratified Map Spaces
+Stratified Map Spaces  
 A Formal Basis for Multi-resolution Spatial Databases
 % Bouquin -- 1998
 % John Stell and Michael Worboys

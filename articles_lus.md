@@ -121,7 +121,7 @@ Multi-Agent Simulation: New Approaches to Exploring Space-Time Dynamics within
 GIS & 2018-05-22 & batty1999 \\
 \hline
 Stratified Map Spaces: A Formal Basis for Multi-resolution Spatial
-Databases & 2018-05-23 & stell1999 \\
+Databases & 2018-05-23 & stell1998 \\
 \hline
 Un Mode de Graphe Spatio-temporel pour Représenter l'Évolution d'Éntités
 Géographiques & 2018-05-24 & delmondo2011 \\
