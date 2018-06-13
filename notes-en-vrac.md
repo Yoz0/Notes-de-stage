@@ -124,3 +124,10 @@
   courts chemins pour chaque agents, on pourrait dire qu'ils connaissent la
   position relative de leur objectif ("C'est au Nord") et qu'ils essaient de
   prendre le chemin le plus droits pour y aller.
+
+* **Idée de modélisations** : On pourrait faire un graphe où les rues seraient
+  nodes et deux nodes seraient reliés si elles se croisent. Ça pourrait pas mal
+  simplifier le graphe. Et pour que les agents sur les rues sachent si ils
+  doivent aller vers le nord ou le sud pour aller su l'intersection on peut
+  suivre les numéros des rues et indiquer sur chaque liaison entre les rues à
+  quel numéro elles sont.
