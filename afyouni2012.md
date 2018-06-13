@@ -6,17 +6,17 @@ Algorithms for continuous location-dependent and context-aware queries in indoor
 # Résumé
 
 L'article présente des algorithmes pour calculer de façons continuels le plus
-court chemins entre deux objets statiques ou movants à l'intérieur d'un
-batîment.
+court chemins entre deux objets statiques ou mouvants à l'intérieur d'un
+bâtiment.
 
 **Mots-clefs** : Espace, Graphes, Algorithmes
 
 ![La hiérarchie des sorties](afyouni2012.png)
 
-# Modélisations 
+# Modélisations
 
 L'idée est d'utiliser plusieurs granularités pour décrire l'espace. On rend
-aussi les sorties explicite qu'on hierachise pour trouver comment passer d'un
+aussi les sorties explicite qu'on hiérarchise pour trouver comment passer d'un
 espace à l'autre
 
 # Commentaires

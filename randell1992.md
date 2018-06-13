@@ -1,7 +1,7 @@
-% Fiche de lecture 
+% Fiche de lecture  
 A Spatial Logic based on Regions and Connection
-% 3rd Int. Conf. on Knowledge Representation and Reasoning -- 1992
-% David A. Randell, Zhan Cui and Anthiny G. Cohn
+% 3rd international conference on Knowledge Representation and Reasoning -- 1992
+e David A. Randell, Zhan Cui and Anthony G. Cohn
 
 # Résumé
 
@@ -14,7 +14,7 @@ l'espace.
 
 # Modélisations
 
-- Les pbjets de bases sont les régions
+- Les objets de bases sont les régions
 
 - La relation de base est la _connection_, on voir C(x, y) comme "La région x
   et y ont un point en commun.
@@ -24,7 +24,7 @@ l'espace.
 
 # Commentaires
 
-Le treillis des relations entre régions est pas mal. C'est utilisé dans bcp
+Le treillis des relations entre régions est pas mal. C'est utilisé dans beaucoup
 d'autres articles.
 
 # Bibtex

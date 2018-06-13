@@ -1,5 +1,5 @@
 % Fiche de lecture  
-Use of graph theory to support generalisation
+Use of graph theory to support generalization
 % Cartography and Geographic Information Systems -- 1993
 % William Mackaness and Kate Beard
 
@@ -8,14 +8,14 @@ Use of graph theory to support generalisation
 Le but est d'utiliser la théorie des graphes pour aider à la généralisation
 d'une carte. La généralisation d'une carte est l'action d'effacer les détails
 d'une carte pour la faire en plus petite. Le but étant d'identifier les détails
-nécessires à garder.
+nécessaires à garder.
 
 **Mots-clefs** : Graphe, Cartes
 
 ![Deux généralisation, A est meilleur que B puisqu'elle ne laisse pas d'éléments
 isolés.](mackaness1993.png)
 
-# Modélisations 
+# Modélisations
 
 En fait l'idée c'est de faire un graphe des connections entre les objets, et
 avec un certain nombre de règles on peut déterminer l'ordre d'importance des

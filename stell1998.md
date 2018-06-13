@@ -1,5 +1,5 @@
 % Fiche de lecture  
-Stratified Map Spaces:  
+Stratified Map Spaces
 A Formal Basis for Multi-resolution Spatial Databases
 % Bouquin -- 1998
 % John Stell and Michael Worboys
@@ -8,14 +8,14 @@ A Formal Basis for Multi-resolution Spatial Databases
 
 Dans ce papier, John Stell présente une théorie pour modéliser les différentes
 échelles de précisions géographique et sémantique qu'on peut avoir dans une
-même base de donnés. Il explique comment les orgniser et passer d'une à
+même base de donnés. Il explique comment les organiser et passer d'une à
 l'autre.
 
 **Mots-clefs** : Granularité, Espace, Théorie
 
 ![Une _stratified map space_](stell1998.png){height=7cm}
 
-# Modélisations 
+# Modélisations
 
 Deux caractéristiques d'un jeu de données :
 
@@ -42,11 +42,13 @@ C'est une bonne base théorique.
 
 ```
 @INPROCEEDINGS{Stell98stratifiedmap,
-author = {John Stell and Michael Worboys},
-title = {Stratified Map Spaces: A Formal Basis for Multi-resolution Spatial Databases},
-booktitle = {SDH'98 Proceedings 8th International Symposium on Spatial Data Handling, pages 180--189. International Geographical},
-year = {1998},
-pages = {180--189}
+  author = {John Stell and Michael Worboys},
+  title = {Stratified Map Spaces: A Formal Basis for Multi-resolution Spatial
+  Databases},
+  booktitle = {SDH'98 Proceedings 8th International Symposium on Spatial Data
+  Handling, pages 180--189. International Geographical},
+  year = {1998},
+  pages = {180--189}
 }
 ```
 

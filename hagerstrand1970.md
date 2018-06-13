@@ -6,7 +6,7 @@ What about people in regional science?
 # Résumé
 
 Partant du constat que les modélisations ne traitent jamais les individus en
-tant qu'individus mais en tant que membre de foules, Torsten Hagerstrand
+tant qu'individu mais en tant que membre de foules, Torsten Hagerstrand
 propose de modéliser les itinéraires des individus.
 
 **Mots-clefs** : Espace, Temps
@@ -14,7 +14,7 @@ propose de modéliser les itinéraires des individus.
 ![Les tubes sont des domaines maitriser par des individus, et les segments sont
 les chemins des individus](hagerstrand1970.png){height=7cm}
 
-# Modélisations 
+# Modélisations
 
 L'idée est d'utiliser des graphes en 3 dimensions, 2 servent à représenter
 l'espace tandis que la troisième sert à représenter le temps.
@@ -24,7 +24,7 @@ le haut.
 
 Torsten Hägerstrand ne s'arrête pas là. Il montre qu'en considérant les
 contraintes, comme dormir ou manger, et les latitudes de déplacements, on peut
-définir des prismes qui montrent l'espace où pourrait être l'individus.
+définir des prismes qui montrent l'espace où pourrait être l'individu.
 
 ![Les prismes des déplacements quotidiens des individus](hagerstrand1970-2.png)
 

@@ -15,14 +15,14 @@ graphe.
 ![En haut un graphe à dont les  deux nodes fusionnent, et en bas la
 représentation en _maptree_](worboys2012.png)
 
-# Modélisations 
+# Modélisations
 
 On représente les régions par des nodes blanches et les frontières par des nodes
 noirs. Ensuite on relient les nodes quand la région et la frontière sont
 connectés.
 
-De plus, les arêtes dans le graphe de départ sont orientés et labélisés. Ainsi,
-on labélise chaque arête dans le _maptree_ avec les arètes qui décrivent le tour
+De plus, les arêtes dans le graphe de départ sont orientés et labelisés. Ainsi,
+on labélise chaque arête dans le _maptree_ avec les arêtes qui décrivent le tour
 de la régions.
 
 # Commentaires

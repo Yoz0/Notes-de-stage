@@ -5,16 +5,16 @@ Agent-Based Approach and Dynamic Graphs to Model Logistic Corridor
 
 # Résumé
 
-Dans ce papier, l'auteur veut modéliser, par une approche multi-agents, la
-gestion des stocks et les chaines d'approvisionements. 
+Dans ce papier, l'auteur veut modéliser, par une approche multi agents, la
+gestion des stocks et les chaines d'approvisionnements.
 
-![Les intercations entre tous les agents](demare2015.png)
+![Les interactions entre tous les agents](demare2015.png)
 
-# Modélisations 
+# Modélisations
 
-* **Espace** : Comme les chaines appoviosionements sont constitués de plusieurs
-réseaux : maritime ; ferrovière ; routier. De fait, la modélisations est
-multi-échelle. Mais l'auteur ne détaille pas comment il a modéliser cela
+* **Espace** : Comme les chaines approvisionnements sont constitués de plusieurs
+réseaux : maritime ; ferroviaire ; routier. De fait, la modélisations est
+multi échelle. Mais l'auteur ne détaille pas comment il a modéliser cela
 
 * **Temps** : Pas précisé
 
@@ -22,25 +22,27 @@ multi-échelle. Mais l'auteur ne détaille pas comment il a modéliser cela
 
 # Commentaires
 
-J'ai l'impression q'il ne détaille pas bien le modèle, ou alors j'ai pas compris :(
+J'ai l'impression qu'il ne détaille pas bien le modèle, ou alors j'ai pas
+compris :(
 
 # Bibtex
 ```
 @article{DEMARE2015968,
-title = "Agent-based Approach and Dynamic Graphs to Model Logistic Corridor",
-journal = "Procedia Computer Science",
-volume = "52",
-pages = "968 - 973",
-year = "2015",
-note = "The 6th International Conference on Ambient Systems, Networks and Technologie
-s (ANT-2015), the 5th International Conference on Sustainable Energy Information Tech
-nology (SEIT-2015)",
-issn = "1877-0509",
-doi = "https://doi.org/10.1016/j.procs.2015.05.174",
-url = "http://www.sciencedirect.com/science/article/pii/S1877050915009746",
-author = "Thibaut Démare and Cyrille Bertelle and Antoine Dutot and Laurent Lévêque",
-keywords = "agent-based model, dynamic graph, logistic system, modelling, complex sys
-tem, geographical information system"
+  title = "Agent-based Approach and Dynamic Graphs to Model Logistic Corridor",
+  journal = "Procedia Computer Science",
+  volume = "52",
+  pages = "968 - 973",
+  year = "2015",
+  note = "The 6th International Conference on Ambient Systems, Networks and
+  Technologies (ANT-2015), the 5th International Conference on Sustainable
+  Energy Information Tech nology (SEIT-2015)",
+  issn = "1877-0509",
+  doi = "https://doi.org/10.1016/j.procs.2015.05.174",
+  url = "http://www.sciencedirect.com/science/article/pii/S1877050915009746",
+  author = "Thibaut Démare and Cyrille Bertelle and Antoine Dutot and Laurent
+  Lévêque",
+  keywords = "agent-based model, dynamic graph, logistic system, modelling,
+  complex system, geographical information system"
 }
 ```
 

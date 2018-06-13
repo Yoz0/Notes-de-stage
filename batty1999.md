@@ -7,14 +7,14 @@ Multi-Agent Simulation: New Approaches to Exploring Space-Time Dynamics within G
 
 Michael Batty présente dans cette article des méthodes pour explorer l'espace
 avec des automates cellulaires. Il montre comment faire des algorithmes de plus
-court chemin, de la simulation de ruisselement et de la détermination de champ
+court chemin, de la simulation de ruissellement et de la détermination de champ
 de vision.
 
-**Mots-clefs** : Automates cellulaires ; GIS ; Multi-Agents
+**Mots-clefs** : Automates cellulaires ; GIS ; Multi Agents
 
-![De gauche à droite : Dijkstra, ruisselement, champ de vision](batty1999.png)
+![De gauche à droite : Dijkstra, ruissellement, champ de vision](batty1999.png)
 
-# Modélisations 
+# Modélisations
 
 Ici, l'espace est modélisé par une matrice de pixels pouvant prendre plusieurs
 valeurs. Les agents ne représente pas des personnes, mais sont là uniquement
@@ -22,7 +22,7 @@ pour "distribuer" les calculs.
 
 # Commentaires
 
-Est-ce que la représentation de l'espace en matrice de pixel ça fairerai avancer
+Est-ce que la représentation de l'espace en matrice de pixel ça ferai avancer
 le schmilblick ? Je sais pas trop... À part ça il y a pas grand chose à tirer
 de cette article.
 
@@ -30,9 +30,10 @@ de cette article.
 
 ```
 @article{batty1999multi,
-  title={Multi-agent simulation: new approaches to exploring space-time dynamics in GIS},
+  title={Multi-agent simulation: new approaches to exploring space-time
+  dynamics in GIS},
   author={Batty, Michael and Jiang, Bin},
-  year={1999},  
+  year={1999},
   publisher={Centre for Advanced Spatial Analysis (UCL)}
 }
 ```

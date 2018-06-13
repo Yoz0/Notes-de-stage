@@ -7,7 +7,7 @@ Un système de génération d'itinéraires des activités mobiles dans la ville
 
 Dans cet article Ines Jguirim décrit un système de génération d'itinéraires.
 C'est à dire un système qui pour un réseau routier, un réseau de transport, un
-ensmeble de point d'intérêts et un profile de piéton, donne l'ensemble des
+ensemble de point d'intérêts et un profile de piéton, donne l'ensemble des
 itinéraires qui permettent au piéton de faire ces activités en considérant sa
 vitesse et moyens de transports.
 
@@ -15,14 +15,14 @@ vitesse et moyens de transports.
 
 ![L'activité balade urbaine](jguirim2015.png)
 
-# Modélisations 
+# Modélisations
 
 La carte est un graphe où les nodes sont les intersections et les arêtes sont
 les rues reliant ces intersections. Les moyens de transports sont des listes
-reliants les stations. Les points d'intérêts sont notés sur les nodes.
+reliant les stations. Les points d'intérêts sont notés sur les nodes.
 
 Pour trouver les itinéraires, l'algorithme explore tous les chemins possible
-couvrant les points d'intérèts, et respectant les contraintes du piéton.
+couvrant les points d'intérêts, et respectant les contraintes du piéton.
 
 # Commentaires
 

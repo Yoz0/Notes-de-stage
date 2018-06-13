@@ -6,7 +6,7 @@ Engineering multilevel overlay graphs for shortest-path queries
 # Résumé
 
 Le but de cet article est de présenter une méthode pour créer des _overlay
-graphs_, qui vont conserver les plus court chemins, ce qui permetra d'accélerer
+graphs_, qui vont conserver les plus court chemins, ce qui permettra d'accélérer
 leurs recherche.
 
 **Mots-clefs** : Espace, Granularité, Graphes, Plus court chemins
@@ -14,7 +14,7 @@ leurs recherche.
 ![À gauche un _multi-level graph_ ; À droite un _extended multi-level
 graph_](holzer2009.png)
 
-# Modélisations 
+# Modélisations
 
 Pour créer _l'overlay_ on choisit d'abord les nodes (S) qui y seront présentes,
 puis on calcule les plus court chemins entre les nodes de S qui ne passent par
@@ -34,8 +34,8 @@ l'arbre des composante.
 # Commentaires
 
 Super utile cet article ! Ça ressemble énormément à ce que je veux faire.  Il
-va falloir approondir le sujet et trouver comment modifier le graphe, et le
-partionner.
+va falloir approfondir le sujet et trouver comment modifier le graphe, et
+comment gérer les multiples versions du graphes pour chaque agent.
 
 # Bibtex
 

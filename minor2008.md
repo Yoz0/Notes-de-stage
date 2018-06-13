@@ -14,12 +14,12 @@ aux changements de topologies
 ![Quatre types de graphes: (a) planaire, (b) aléatoire, (c) sans échelle et (d)
 petit monde](minor2008.png)
 
-# Modélisations 
+# Modélisations
 
 La conclusion de l'article est que les réseaux avec beaucoup de connectivité,
 comme les réseaux petit monde sont résistants à la destruction de nodes, mais
-pas à la propagation d'épidémies. Réciproquement les réseaux avec bcp de
-compartimentalisation sont résistant à la propagation d'épidémie mais pas
+pas à la propagation d'épidémies. Réciproquement les réseaux avec beaucoup de
+compartimentage sont résistant à la propagation d'épidémie mais pas
 tellement à la destruction de nodes.
 
 # Commentaires
@@ -31,7 +31,8 @@ Albert & Barabasi 2002; Proulx et al. 2005
 
 ```
 @article{minor2008graph,
-  title={A graph-theory framework for evaluating landscape connectivity and conservation planning},
+  title={A graph-theory framework for evaluating landscape connectivity and
+  conservation planning},
   author={Minor, Emily S and Urban, Dean L},
   journal={Conservation biology},
   volume={22},

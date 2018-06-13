@@ -2,7 +2,7 @@
 
 ### ESCAPE proposition
 
-* Le coté multi-échelle est très important. C'est la différence principale
+* Le coté multi échelle est très important. C'est la différence principale
   entre notre truc est celui des autres
 
 * Page 13, c'est quoi ce tableau ?
@@ -13,7 +13,7 @@
 
 ### From graph to spatial graph
 
-* Fin de page 5, début 6 : Comprends pas l'exemple... C'est quoi la distance ? 
+* Fin de page 5, début 6 : Comprends pas l'exemple... C'est quoi la distance ?
 
 * Faut que je revoie distribution de Poisson ; power law ; exponential
   distribution
@@ -45,10 +45,10 @@
 ### SAGEO2016 p.107 -- Intérêt de la simulation paysagère en modélisation géoprospective
 
 
-Définir les espaces selons leurs urbanisations ; Faire des chaines de markov
+Définir les espaces selon leurs urbanisations ; Faire des chaines de Markov
 pour mettre en évidence les transformations qu'il y a eu les dernières années
-(augmentations du "batis difus"...) ; créer la matrice de transformation de
-cette chaine de markov ; appliquer cette matrice pour prévoir l'évoltuion du
+(augmentations du "bâtis diffus"...) ; créer la matrice de transformation de
+cette chaine de Markov ; appliquer cette matrice pour prévoir l'évolution du
 terrain. ; Un coup il parlait de "véritisme" mais tout ce que j'ai trouvé qui a
 ce nom là c'est un courant d'art italien...
 
@@ -56,14 +56,14 @@ ce nom là c'est un courant d'art italien...
 
 ### SAGEO2016 p.123 -- Un modèle et une plateforme pour l'évaluation et la comparaison de services de reconnaisances d'entités nommées spatiales
 
-Je comprends pas bien à quoi ça sert un service de reconnaisance d'entité ;
+Je comprends pas bien à quoi ça sert un service de reconnaissance d'entité ;
 C'est quoi les entités à reconnaitre ? ; Bon, je suis passé rapidement sur la
 fin
 
-### SAGEAO2016 p.138 -- Conception logique et physique des hiérachie spatiales non strices dans les entrepôts de données spatiales
+### SAGEAO2016 p.138 -- Conception logique et physique des hiérarchie spatiales non strictes dans les entrepôts de données spatiales
 
-Entrepots de données spatiales (EDS) : ça peut être intéressant, non ? Surement
-pas en fait, mais bon on peut explorer ; hierarchie non strictes : hiérarchie
+Entrepôts de données spatiales (EDS) : ça peut être intéressant, non ? Surement
+pas en fait, mais bon on peut explorer ; hiérarchie non strictes : hiérarchie
 ou un fils peut avoir plusieurs pères ; le modèle présenté est cool, pas utile
 pour notre problème par contre ; l'idée de distributed factor pourrait revenir
 : pour les fils qui ont plusieurs pères, on dit qu'ils ont tel père à tant de
@@ -73,17 +73,17 @@ compris comment fonctionnait l'index NN, mais ça a l'air efficace ;
 
 ### SAGEAO2016 p.153 -- Modélisation des activités viticoles sous contraintes climatiques
 
-Ça a l'air de bcp ressembler à ce que je vais faire, cest de la modélisation de
-multi-agents avec des graphes spatio-temporels ; Ah bah tiens ils utilisent
-GAMA eux aussi ; ah... En fait c'était pas des graphes, c'était juste des BDs;
-Pas super intéressant comme article.
+Ça a l'air de beaucoup ressembler à ce que je vais faire, c'est de la
+modélisation de multi agents avec des graphes spatio-temporels ; Ah bah tiens
+ils utilisent GAMA eux aussi ; ah... En fait c'était pas des graphes, c'était
+juste des BDs; Pas super intéressant comme article.
 
 ### SAGEO2016 p.248 -- Les réseaux de transport à grande vitesse en France : construction et apports d'un système d'information géo-historique
 
 J'ai l'impression qu'ils supposent qu'on sait ce que c'est un système
 d'information géo-historique (SIGH); Bah ils expliquent pas bien leurs
 modèle... J'ai pas l'impression qu'il soit très compliqué par contre. Juste un
-graphe planaire, on voit pas le coté temporel, ils disent qu'ils ont bcp de
+graphe planaire, on voit pas le coté temporel, ils disent qu'ils ont beaucoup de
 vielles données, mais on voit pas comment ils les comparent.
 
 ## 2018-05-16
@@ -94,7 +94,7 @@ C'est marrant, le sujet a l'air très proche du notre, sauf qu'au lieu de
 modéliser les gens qui fuient, ils modélisent les catastrophes. Ça me fait
 penser qu'on pourrait faire ça dans ESCAPE, non ? Peut-être que ça permettrai
 de faire les scénarios plus facilement. ; Ok, c'est pas mal de voir la
-strucutre de l'explication, d'abord expliquer les souçis, ensuite les
+structure de l'explication, d'abord expliquer les soucis, ensuite les
 propriétés des objets puis un diagramme UML et enfin des exemples. ; Le papier
 est plutôt cool
 
@@ -140,7 +140,7 @@ Dynamic multi-level overlay graohs or shortest paths & 2018-05-30 & bruera2008\\
 Amélioration de la représentation cartographique des phénomènes urbains &
 2018-05-31 & hapham2017 \\
 \hline
-Use of graph theory to support generalisation & 2018-06-01 & mackaness1993 \\
+Use of graph theory to support generalization & 2018-06-01 & mackaness1993 \\
 \hline
 A graph theory framework for evaluating landscape connectivity and conservation
 planning & 2018-06-04 & minor2008 \\

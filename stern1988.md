@@ -5,8 +5,8 @@ Levels Of Spatial Knowledge and Urban Travel Modeling
 
 # Résumé
 
-Stern décrit içi comment il interviewer des conduteurs de différents niveaux
-(proffesionels ou amateurs) pour mettre en évidence les différences dans leurs
+Stern décrit ici comment il a interviewé des conducteurs de différents niveaux
+(professionnels ou amateurs) pour mettre en évidence les différences dans leurs
 connaissance de la ville. Il montre qu'il y a trois niveaux de connaissance, et
 fait ressortir les différences de performances entre ceux-ci
 
@@ -16,22 +16,23 @@ fait ressortir les différences de performances entre ceux-ci
 
 # Commentaires
 
-Bon, c'est pas trop dans le thème. En fait il n'a pas du tout fait de modélisation
-de l'espace, simplement une catégorisation du niveau de connaissance.
+Bon, c'est pas trop dans le thème. En fait il n'a pas du tout fait de
+modélisation de l'espace, simplement une catégorisation du niveau de
+connaissance.
 
 # Bibtex
 
 ```
 @article{doi:10.1111/j.1538-4632.1988.tb00172.x,
-author = {Stern Eliahu and Leiser David},
-title = {Levels of Spatial Knowledge and Urban Travel Modeling},
-journal = {Geographical Analysis},
-volume = {20},
-number = {2},
-pages = {140-155},
-doi = {10.1111/j.1538-4632.1988.tb00172.x},
-url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1538-4632.1988.tb00172.x},
-eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1538-4632.1988.tb00172.x}
+  author = {Stern Eliahu and Leiser David},
+  title = {Levels of Spatial Knowledge and Urban Travel Modeling},
+  journal = {Geographical Analysis},
+  volume = {20},
+  number = {2},
+  pages = {140-155},
+  doi = {10.1111/j.1538-4632.1988.tb00172.x},
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1538-4632.1988.tb00172.x},
+  eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1538-4632.1988.tb00172.x}
 }
 ```
 

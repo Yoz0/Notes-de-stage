@@ -9,9 +9,9 @@ Le but de cette thèse est de présenter un moyen d'améliorer les cartes
 
 **Mots-clefs** : Espace, Cartographie
 
-![Les différentes caracteristiques d'une légende](hapham2017.png){height=7cm}
+![Les différentes caractéristiques d'une légende](hapham2017.png){height=7cm}
 
-# Modélisations 
+# Modélisations
 
 # Commentaires
 
@@ -21,7 +21,8 @@ Hmmm... Rien de bien intéressant en fait.
 
 ```
 @phdthesis{thu2017amelioration,
-  title={Am{\'e}lioration de la repr{\'e}sentation cartographique des ph{\'e}nom{\`e}nes urbains},
+  title={Am{\'e}lioration de la repr{\'e}sentation cartographique des
+  ph{\'e}nom{\`e}nes urbains},
   author={thu ha Pham, Thi and others},
   year={2017},
   school={Paris Est}
