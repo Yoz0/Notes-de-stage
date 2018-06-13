@@ -157,5 +157,7 @@ The maptree: A fine-grained formal representation of space & 2018-06-07 &
 worboys2012 \\
 \hline
 Representing and reasoning about changing spatial extensions of geographic
-features & 2018-06-11 & campelo2013
+features & 2018-06-11 & campelo2013 \\
+\hline
+Managing time in GIS: An event-oriented approach & 2018-06-13 & claramunt1995 \\
 \end{tabular}
