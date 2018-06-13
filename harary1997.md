@@ -11,7 +11,9 @@ existent, agrémenté de quelques exemples
 **Mots-clefs** : Graphes dynamiques, Temps, Graphes
 
 ![Un jeu où les joueurs doivent chacun leur tours mettre un trait entre deux
-nodes non adjacente, le premier à faire un triangle a perdu](harary1997.png)
+nodes non adjacente, le premier à faire un triangle a perdu ; Ici le joueur
+vert à joué de sorte sue le joueur rouge soit obligé de faire un
+triangle](harary1997.png)
 
 # Modélisations
 
