@@ -12,41 +12,54 @@
 
 Escape est un projet de logiciel pour modéliser les évacuations de villes en cas
 d'une crise (comme l'explosion d'une usine, ou bien l'inondation d'un pont).
-Ces crises peuvent modifier l'espace de ville, comme interdir l'accès de
+Ces crises peuvent modifier l'espace de ville, comme interdire l'accès de
 certaines zone aux piétons, ou bien couper un pont. Ce qui évidemment gêne
 l'évacuation de la population, et doit donc être pris en compte dans la
 modélisation.
 
-Escape sera donc une simulation multi-agents où les angets seronts des piétons
+Escape sera donc une simulation multi-agents où les agents seront des piétons
 ou des automobilistes qui se déplaceront dans l'espace, tandis qu'il ne
 connaitront pas parfaitement cet espace.
 
 \subsection{Représentation spatiales}
 
-On doit donc décider d'une facon de modéliser l'espace permettant aux agents de
-se déplacer dans celui-ci. Il faut que les agents puissent savoir où ils sont,
-et quel chemin il doivent prendre pour aller là où ils veulent.
+On doit donc décider d'une façon de modéliser l'espace permettant aux agents de
+se déplacer dans celui-ci. L'espace étant, par exemple, le réseau routier. Il
+faut que les agents puissent savoir où ils sont, et quel chemin il doivent
+prendre pour aller là où ils veulent.
 
 \subsection{Relations spatio-temporels}
 
 L'espace peut être amené à se modifier au cours de la simulation, la crue peut
-monter et bloquer d'autres ponts, ou un nuage toxique peut se déplacer par 
+monter et bloquer d'autres ponts, ou un nuage toxique peut se déplacer par
 exemple. Il est donc important de prévoir une modélisation qui peut facilement
-être modifiée.
+être modifiée. Les modifications que l'on voudra apporter peuvent prendre
+plusieurs forme, un chemin reliant deux espaces peut être coupé, un espace
+peut être à éviter et donc tous les chemins menant à cet endroit doivent être
+enlevés. Un chemin peut aussi devenir plus difficile à traverser (le terrain
+peut devenir boueux par exemple), il faudra donc noter que la vitesse des agents
+sur ce terrain est ralentie.
 
 \subsection{Diversités des connaissances}
 
 Dans une ville, il se peut que les agents n'aient pas les mêmes connaissances
 de l'espace, par exemple certaines personnes peuvent connaître certaines rues
-ou des raccourcis que d'autres ne connaîssent pas. Cela va évidemment influer
+ou des raccourcis que d'autres ne connaissent pas. Cela va évidemment influer
 sur les choix des agents, ainsi la modélisation se doit de pouvoir représenter
 cette diversité.
 
-\subsubsection{Modification dynamique de la connaissance}
+\subsubsection{Modification dynamique de la connaissance par la perception}
 
 Au cours de la simulation, les agents vont percevoir l'espace et leurs
-connaissancesde l'espace vont être modifié en conséquence. Il faut donc prévoir
-que les connaissances de chacuns peuvent être modifiée.
+connaissances de l'espace vont être modifié en conséquence. Il faut donc prévoir
+que les connaissances de chacun peuvent être modifiée.
+
+\subsection{Partage de la connaissance entre agents}
+
+Parfois deux agents n'aillant pas la même connaissance de l'espace vont se
+rencontrer et ils vont mettre en commun leurs connaissance. Il faut réfléchir
+à une façon de fusionner les connaissance et de juger quelle connaissance doit
+être conservée.
 
 \subsection{Limitations techniques}
 

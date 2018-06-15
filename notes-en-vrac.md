@@ -130,4 +130,4 @@
   simplifier le graphe. Et pour que les agents sur les rues sachent si ils
   doivent aller vers le nord ou le sud pour aller su l'intersection on peut
   suivre les numéros des rues et indiquer sur chaque liaison entre les rues à
-  quel numéro elles sont.
+  quel numéro elles sont. Voir _Dual graph_
