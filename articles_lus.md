@@ -160,4 +160,7 @@ Representing and reasoning about changing spatial extensions of geographic
 features & 2018-06-11 & campelo2013 \\
 \hline
 Managing time in GIS: An event-oriented approach & 2018-06-13 & claramunt1995 \\
+\hline
+R-trees: A dynamic index structure for spatial searching & 2018-06-14 &
+guttman1984 \\
 \end{tabular}
