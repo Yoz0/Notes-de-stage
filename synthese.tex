@@ -8,25 +8,28 @@
 \maketitle
 
 \section{Problématique}
+
 \subsection{Escape}
 
 Escape est un projet de logiciel pour modéliser les évacuations de villes en cas
-d'une crise (comme l'explosion d'une usine, ou bien l'inondation d'un pont).
-Ces crises peuvent modifier l'espace de ville, comme interdire l'accès de
-certaines zone aux piétons, ou bien couper un pont. Ce qui évidemment gêne
-l'évacuation de la population, et doit donc être pris en compte dans la
-modélisation.
+de crise (comme l'explosion d'une usine, ou bien l'inondation d'un pont).  Ces
+crises peuvent modifier l'espace de ville, comme interdire l'accès de certaines
+zone aux piétons, ou bien couper un pont. Ce qui évidemment gêne l'évacuation
+de la population, et doit donc être pris en compte dans la modélisation.
 
 Escape sera donc une simulation multi-agents où les agents seront des piétons
 ou des automobilistes qui se déplaceront dans l'espace, tandis qu'il ne
 connaitront pas parfaitement cet espace.
 
-\subsection{Représentation spatiales}
+\subsection{Représentation spatiale}
 
 On doit donc décider d'une façon de modéliser l'espace permettant aux agents de
-se déplacer dans celui-ci. L'espace étant, par exemple, le réseau routier. Il
-faut que les agents puissent savoir où ils sont, et quel chemin il doivent
-prendre pour aller là où ils veulent.
+se déplacer dans celui-ci. L'espace étant, par exemple, le réseau routier,
+l'ensemble des rues que les piétons peuvent emprunter ou bien le réseau de
+transports en commun.
+
+Il faut que notre modélisation permettent aux agents de savoir où ils sont, et
+quel chemin il doivent prendre pour aller là où ils veulent.
 
 \subsection{Relations spatio-temporels}
 
@@ -34,11 +37,11 @@ L'espace peut être amené à se modifier au cours de la simulation, la crue peu
 monter et bloquer d'autres ponts, ou un nuage toxique peut se déplacer par
 exemple. Il est donc important de prévoir une modélisation qui peut facilement
 être modifiée. Les modifications que l'on voudra apporter peuvent prendre
-plusieurs forme, un chemin reliant deux espaces peut être coupé, un espace
+plusieurs formes : un chemin reliant deux espaces peut être coupé ; un espace
 peut être à éviter et donc tous les chemins menant à cet endroit doivent être
-enlevés. Un chemin peut aussi devenir plus difficile à traverser (le terrain
-peut devenir boueux par exemple), il faudra donc noter que la vitesse des agents
-sur ce terrain est ralentie.
+enlevés ou un chemin peut devenir plus difficile à traverser (le terrain peut
+devenir boueux par exemple) et il faudra noter que la vitesse des agents sur ce
+terrain est ralentie.
 
 \subsection{Diversités des connaissances}
 
@@ -48,25 +51,58 @@ ou des raccourcis que d'autres ne connaissent pas. Cela va évidemment influer
 sur les choix des agents, ainsi la modélisation se doit de pouvoir représenter
 cette diversité.
 
-\subsubsection{Modification dynamique de la connaissance par la perception}
+  \subsubsection{Modification dynamique de la connaissance par la perception}
 
-Au cours de la simulation, les agents vont percevoir l'espace et leurs
-connaissances de l'espace vont être modifié en conséquence. Il faut donc prévoir
-que les connaissances de chacun peuvent être modifiée.
+  Au cours de la simulation, les agents vont percevoir l'espace et leurs
+  connaissances de l'espace vont être modifié en conséquence. Il faut donc
+  prévoir que les connaissances de chacun peuvent être modifiée.
 
-\subsection{Partage de la connaissance entre agents}
+  \subsubsection{Partage de la connaissance entre agents}
 
-Parfois deux agents n'aillant pas la même connaissance de l'espace vont se
-rencontrer et ils vont mettre en commun leurs connaissance. Il faut réfléchir
-à une façon de fusionner les connaissance et de juger quelle connaissance doit
-être conservée.
+  Parfois deux agents n'aillant pas la même connaissance de l'espace vont se
+  rencontrer et ils vont mettre en commun leurs connaissance. Il faut réfléchir
+  à une façon de fusionner les connaissance et de juger quelle connaissance
+  doit être conservée.
 
-\subsection{Limitations techniques}
+\subsection{Contraintes techniques}
 
 La ville étant un espace grand est complexe, et le nombre d'agents gigantesque,
 il va falloir faire très attention à la taille mémoire que va prendre la
 modélisation et à la quantité de calculs nécessaire à la simulation.
 
 \section{État de l'art}
+
+Dans le domaine il y a plusieurs façon de représenter l'espace en bit map [ref]
+qui sont utiles pour représenter les étendues, les map-tree [ref] qui se
+focalisent sur la représentation des frontières, Region Connection Calculus
+(RCC-8) [ref] définit les régions et leurs connections topologiques (se
+touchent, se superposent, à l'intérieur de...) ou bien les graphes spatiaux
+[ref] qui représente l'espace comme un agrégat de nodes reliés par des arêtes,
+qui est très pratiques pour considérer les chemins.
+
+Notre choix se porte donc sur une représentation de l'espace avec des nodes car
+nous nous intéressons principalement aux chemins et aux déplacements de nos
+agents.
+
+Il y a plusieurs façon de représenter l'espace avec des graphes. Pour le réseau
+de rues par exemple on peut considérer que les intersections de rues sont des
+nodes et relier chaque nodes si il y a un tronçon de rue entre les deux [ref].
+On peut aussi prendre le graphe dual et avoir chaque tronçon de rue comme nodes
+et deux nodes sont reliés si elles se croisent [ref]. Ou bien encore chaque rue
+est une node et reliés deux nodes si les rues s'intersectent [ref]. On peut
+faire de même pour le réseau routier ou celui des transport en commun.
+
+On peut aussi parler de granularité, les \emph{stratified map space} dans
+[stell1998] sont des représentations de l'espace selon plusieurs degrés de
+précisions sémantiques et géographiques. C'est particulièrement utile pour
+représenter simplement un espace qui a beaucoup de détails. En effet il est
+parfois plus intéressant d'enlever de la complexité à une modélisation pour la
+rendre plus lisible.
+
+Les \emph{stratified map space} ressemblent un peu au \emph{multi level overlay
+graphs}[ref] qui sont des graphes auquel on ajoute une couche supplémentaire
+qui est une sélection des nodes les plus importantes pour le calcul de chemins,
+on calcul ensuite le plus court chemin entre ces nodes, cela permet ensuite de
+retrouver le plus court chemin entre toutes les nodes plus rapidement.
 
 \end{document}

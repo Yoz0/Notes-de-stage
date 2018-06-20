@@ -7,7 +7,7 @@ $(PDF_DIR)/%.pdf : %.tex
 	pandoc -f latex -o $@ $<
 
 all: mds tex
-	
+
 mds : $(patsubst %,$(PDF_DIR)/%.pdf, $(basename $(wildcard *.md)))
 tex : $(patsubst %,$(PDF_DIR)/%.pdf, $(basename $(wildcard *.tex)))
 
