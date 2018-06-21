@@ -1,10 +1,11 @@
 PDF_DIR=pdfs
+BIB=biblio.bib
 
 $(PDF_DIR)/%.pdf : %.md
 	pandoc -f markdown -t latex -o $@ $<
 
 $(PDF_DIR)/%.pdf : %.tex
-	pandoc -f latex -o $@ $<
+	pandoc -f latex --bibliography ${BIB} -o $@ $<
 
 all: mds tex
 

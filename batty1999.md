@@ -29,7 +29,7 @@ de cette article.
 # Bibtex
 
 ```
-@article{batty1999multi,
+@article{batty1999,
   title={Multi-agent simulation: new approaches to exploring space-time
   dynamics in GIS},
   author={Batty, Michael and Jiang, Bin},

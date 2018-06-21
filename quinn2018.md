@@ -25,7 +25,7 @@ Comme disait Pierrick, c'est pertinent thématiquement, mais pas techniquement.
 # Bibtex
 
 ```
-@article{article,
+@article{quinn2018,
   author = {Quinn, Tara and Bousquet, François and Guerbois, Chloe and
   Sougrati, Elias and Tabutaud, Matthieu},
   year = {2018},

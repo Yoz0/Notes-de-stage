@@ -26,7 +26,7 @@ avec un certain nombre de règles on peut déterminer l'ordre d'importance des
 # Bibtex
 
 ```
-@article{mackaness1993use,
+@article{mackaness1993,
   title={Use of graph theory to support map generalization},
   author={Mackaness, William A and Beard, Kate M},
   journal={Cartography and Geographic Information Systems},

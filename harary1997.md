@@ -22,7 +22,7 @@ triangle](harary1997.png)
 # Bibtex
 
 ```
-@article{HARARY199779,
+@article{harary1997,
   title = "Dynamic graph models",
   journal = "Mathematical and Computer Modelling",
   volume = "25",

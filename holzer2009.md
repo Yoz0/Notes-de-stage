@@ -40,7 +40,7 @@ comment gérer les multiples versions du graphes pour chaque agent.
 # Bibtex
 
 ```
-@article{holzer2009engineering,
+@article{holzer2009,
   title={Engineering multilevel overlay graphs for shortest-path queries},
   author={Holzer, Martin and Schulz, Frank and Wagner, Dorothea},
   journal={Journal of Experimental Algorithmics (JEA)},

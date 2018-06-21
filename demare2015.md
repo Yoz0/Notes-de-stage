@@ -27,7 +27,7 @@ compris :(
 
 # Bibtex
 ```
-@article{DEMARE2015968,
+@article{demare2015,
   title = "Agent-based Approach and Dynamic Graphs to Model Logistic Corridor",
   journal = "Procedia Computer Science",
   volume = "52",

@@ -33,7 +33,7 @@ je veux faire.
 # Bibtex
 
 ```
-@inproceedings{worboys2012maptree,
+@inproceedings{worboys2012,
   title={The maptree: A fine-grained formal representation of space},
   author={Worboys, Michael},
   booktitle={International Conference on Geographic Information Science},

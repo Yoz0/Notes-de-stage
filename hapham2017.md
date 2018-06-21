@@ -20,7 +20,7 @@ Hmmm... Rien de bien intéressant en fait.
 # Bibtex
 
 ```
-@phdthesis{thu2017amelioration,
+@phdthesis{hapham2017,
   title={Am{\'e}lioration de la repr{\'e}sentation cartographique des
   ph{\'e}nom{\`e}nes urbains},
   author={thu ha Pham, Thi and others},

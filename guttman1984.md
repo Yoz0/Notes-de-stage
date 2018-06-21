@@ -29,7 +29,7 @@ sont localisés.
 # Bibtex
 
 ```
-@article{Guttman:1984:RDI:971697.602266,
+@article{guttman1984,
   author = {Guttman, Antonin},
   title = {R-trees: A Dynamic Index Structure for Spatial Searching},
   journal = {SIGMOD Rec.},

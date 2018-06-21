@@ -38,7 +38,7 @@ pas des masses pour mon problème.
 
 # Bibtex
 ```
-@ARTICLE{Kuipers78modelingspatial,
+@ARTICLE{kuipers1978,
   author = {Benjamin Kuipers},
   title = {Modeling Spatial Knowledge},
   journal = {Cognitive Science},

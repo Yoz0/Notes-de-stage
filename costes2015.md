@@ -34,7 +34,7 @@ Je sais pas si les STAG c'est un principe connu, mais je trouve ça génial.
 
 # Bibtex
 ```
-@InProceedings\{Costes15a,
+@inproceedings{costes2015,
   author = "Costes, Beno\^{\i}t and Perret, Julien and Bucher, B\'en\'edicte
   and Gribaudi, Maurizio",
   title = "An aggregated graph to qualify historical spatial networks using

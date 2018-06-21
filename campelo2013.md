@@ -40,7 +40,7 @@ trucs qui collent pas.
 # Bibtex
 
 ```
-@inproceedings{campelo2013representing,
+@inproceedings{campelo2013,
   title={Representing and reasoning about changing spatial extensions of
   geographic features},
   author={Campelo, Claudio EC and Bennett, Brandon},

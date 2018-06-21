@@ -27,7 +27,7 @@ C'est un bon exemple de papier d'explication de modèle. C'est très clair, et
 
 # Bibtex
 ```
-@inproceedings{tanguy:hal-01417871,
+@inproceedings{tanguy2016,
   TITLE = {{Formalisation spatio-temporelle de perturbations maritimes pour
   l'{\'e}valuation de la vuln{\'e}rabilit{\'e} du r{\'e}seau maritime}},
   AUTHOR = {Tanguy, Martin and Napoli, Aldo},

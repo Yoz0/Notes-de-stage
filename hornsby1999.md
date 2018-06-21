@@ -24,7 +24,7 @@ dimensions, rien de foufou
 # Bibtex
 
 ```
-@inproceedings{hornsby1999shifts,
+@inproceedings{hornsby1999,
   title={Shifts in detail through temporal zooming},
   author={Hornsby, Kathleen and Egenhofer, Max J},
   booktitle={Database and Expert Systems Applications, 1999. Proceedings. Tenth International Workshop on},

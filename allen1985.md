@@ -45,7 +45,7 @@ va me servir.
 # Bibtex
 
 ```
-@inproceedings{Allen:1985:CTT:1625135.1625236,
+@inproceedings{allen1985,
  author = {Allen, James F. and Hayes, Patrick J.},
  title = {A Common-sense Theory of Time},
  booktitle = {Proceedings of the 9th International Joint Conference on

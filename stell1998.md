@@ -41,7 +41,7 @@ C'est une bonne base théorique.
 # Bibtex
 
 ```
-@INPROCEEDINGS{Stell98stratifiedmap,
+@INPROCEEDINGS{stell1998,
   author = {John Stell and Michael Worboys},
   title = {Stratified Map Spaces: A Formal Basis for Multi-resolution Spatial
   Databases},

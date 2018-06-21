@@ -31,7 +31,7 @@ couvrant les points d'intérêts, et respectant les contraintes du piéton.
 # Bibtex
 
 ```
-@inproceedings{jguirim2015systeme,
+@inproceedings{jguirim2015,
   title={Un Syst{\`e}me de G{\'e}n{\'e}ration d'Itin{\'e}raires des activit\'es
   mobiles dans la ville.},
   author={Jguirim, Ines and Brosset, David and Claramunt, Christophe},

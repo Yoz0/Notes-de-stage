@@ -30,7 +30,7 @@ d'autres articles.
 # Bibtex
 
 ```
-@article{randell1992spatial,
+@article{randell1992,
   title={A spatial logic based on regions and connection.},
   author={Randell, David A and Cui, Zhan and Cohn, Anthony G},
   journal={KR},

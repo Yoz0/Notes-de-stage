@@ -30,7 +30,7 @@ Albert & Barabasi 2002; Proulx et al. 2005
 # Bibtex
 
 ```
-@article{minor2008graph,
+@article{minor2008,
   title={A graph-theory framework for evaluating landscape connectivity and
   conservation planning},
   author={Minor, Emily S and Urban, Dean L},

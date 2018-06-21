@@ -35,7 +35,7 @@ bigraphes mais pas utile pour moi je crois.
 # Bibtex
 
 ```
-@phdthesis{delmondo:tel-00651682,
+@phdthesis{delmondo2011,
   TITLE = {{A SPATIO-TEMPORAL GRAPH-BASED MODEL FOR THE EVOLUTION OF
   GEOGRAPHICAL ENTITIES}},
   AUTHOR = {Del Mondo, G{\'e}raldine},

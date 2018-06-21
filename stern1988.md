@@ -23,7 +23,7 @@ connaissance.
 # Bibtex
 
 ```
-@article{doi:10.1111/j.1538-4632.1988.tb00172.x,
+@article{stern1988,
   author = {Stern Eliahu and Leiser David},
   title = {Levels of Spatial Knowledge and Urban Travel Modeling},
   journal = {Geographical Analysis},

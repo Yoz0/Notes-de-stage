@@ -25,7 +25,7 @@ De cet article, il faut surtout retenir la classification des processus.
 # Bibtex
 
 ```
-@incollection{claramunt1995managing,
+@incollection{claramunt1995,
   title={Managing time in GIS an event-oriented approach},
   author={Claramunt, Christophe and Th{\'e}riault, Marius},
   booktitle={Recent advances in temporal databases},

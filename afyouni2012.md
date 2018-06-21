@@ -26,7 +26,7 @@ J'ai pas très bien compris l'article à vrai dire :(
 # Bibtex
 
 ```
-@inproceedings{afyouni2012algorithms,
+@inproceedings{afyouni2012,
   title={Algorithms for continuous location-dependent and context-aware queries
   in indoor environments},
   author={Afyouni, Imad and Ray, Cyril and Ilarri, Sergio and Claramunt,

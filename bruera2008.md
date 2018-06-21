@@ -24,7 +24,7 @@ cette direction, mais sinon je préfère pas le lire en entier
 # Bibtex
 
 ```
-@article{bruera2008dynamic,
+@article{bruera2008,
   title={Dynamic multi-level overlay graphs for shortest paths},
   author={Bruera, Francesco and Cicerone, Serafino and D’Angelo, Gianlorenzo
   and Di Stefano, Gabriele and Frigioni, Daniele},

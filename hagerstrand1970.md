@@ -37,7 +37,7 @@ rejoignent.
 # Bibtex
 
 ```
-@inproceedings{hagerstrand1970people,
+@inproceedings{hagerstrand1970,
   title={What about people in regional science?},
   author={H{\"a}gerstrand, Torsten},
   booktitle={Papers of the Regional Science Association},
