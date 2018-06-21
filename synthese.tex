@@ -72,13 +72,14 @@ modélisation et à la quantité de calculs nécessaire à la simulation.
 
 \section{État de l'art}
 
-Dans le domaine il y a plusieurs façon de représenter l'espace en bit map [ref]
-qui sont utiles pour représenter les étendues, les map-tree [ref] qui se
-focalisent sur la représentation des frontières, Region Connection Calculus
-(RCC-8) [ref] définit les régions et leurs connections topologiques (se
-touchent, se superposent, à l'intérieur de...) ou bien les graphes spatiaux
-[ref] qui représente l'espace comme un agrégat de nodes reliés par des arêtes,
-qui est très pratiques pour considérer les chemins.
+Dans le domaine il y a plusieurs façon de représenter l'espace : en  matrice
+[ref] qui sont utiles pour représenter les étendues, les map-tree
+\cite{worboys2012} qui se focalisent sur la représentation des frontières,
+Region Connection Calculus (RCC-8) \cite{randell1992} définit les régions et leurs
+connections topologiques (se touchent, se superposent, à l'intérieur de...) ou
+bien les graphes spatiaux [ref] qui représente l'espace comme un agrégat de
+nodes reliés par des arêtes, qui est très pratiques pour considérer les
+chemins.
 
 Notre choix se porte donc sur une représentation de l'espace avec des nodes car
 nous nous intéressons principalement aux chemins et aux déplacements de nos
@@ -93,16 +94,31 @@ est une node et reliés deux nodes si les rues s'intersectent [ref]. On peut
 faire de même pour le réseau routier ou celui des transport en commun.
 
 On peut aussi parler de granularité, les \emph{stratified map space} dans
-[stell1998] sont des représentations de l'espace selon plusieurs degrés de
+\cite{stell1998} sont des représentations de l'espace selon plusieurs degrés de
 précisions sémantiques et géographiques. C'est particulièrement utile pour
 représenter simplement un espace qui a beaucoup de détails. En effet il est
 parfois plus intéressant d'enlever de la complexité à une modélisation pour la
 rendre plus lisible.
 
 Les \emph{stratified map space} ressemblent un peu au \emph{multi level overlay
-graphs}[ref] qui sont des graphes auquel on ajoute une couche supplémentaire
+graphs}\cite{holzer2009} qui sont des graphes auquel on ajoute une couche supplémentaire
 qui est une sélection des nodes les plus importantes pour le calcul de chemins,
 on calcul ensuite le plus court chemin entre ces nodes, cela permet ensuite de
-retrouver le plus court chemin entre toutes les nodes plus rapidement.
+retrouver le plus court chemin entre toutes les nodes plus rapidement. Sur le
+même principe on peut citer \cite{bruera2008} qui rends ces overlay graphs
+dynamiques.
+
+En ce qui concerne la modélisations des connaissances, on a peu d'articles
+traitant de ce sujet. On peut citer \cite{kuipers1978} qui crée un modèle
+reproduisant la façon dont les individus se représente l'espace. L'idée étant
+que les gens retiennent surtout les chemins entre leurs points d'intérêts. On
+peut aussi citer \cite{stern1988} qui a fait une étude pour mesurer le niveau de
+connaissance de la ville qu'avait les conducteurs professionnels par rapport
+aux conducteurs amateurs.
+
+\section{Bibliographie}
+\bibliographystyle{plain-fr}
+\bibliography{biblio.bib}
+
 
 \end{document}
