@@ -166,4 +166,6 @@ guttman1984 \\
 \hline
 The dynamic relation ship between sense of place and risk perception in
 landscapes of mobility & 2018-06-15 & quinn2018 \\
+\hline
+From graphs to spatial graphs & 2018-06-25 & dale2010 \\
 \end{tabular}

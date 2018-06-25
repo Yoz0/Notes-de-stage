@@ -131,3 +131,8 @@
   doivent aller vers le nord ou le sud pour aller su l'intersection on peut
   suivre les numéros des rues et indiquer sur chaque liaison entre les rues à
   quel numéro elles sont. Voir _Dual graph_
+
+# 2018-06-22
+
+* J'arrive pas à trouver un article, il cité dans pas mal de trucs, c'est
+  bizarre : Harary F. 1969. Graph Theory. Reading, MA: Addison-Wesley
