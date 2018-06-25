@@ -164,8 +164,10 @@ Managing time in GIS: An event-oriented approach & 2018-06-13 & claramunt1995 \\
 R-trees: A dynamic index structure for spatial searching & 2018-06-14 &
 guttman1984 \\
 \hline
-The dynamic relation ship between sense of place and risk perception in
+The dynamic relationship between sense of place and risk perception in
 landscapes of mobility & 2018-06-15 & quinn2018 \\
 \hline
 From graphs to spatial graphs & 2018-06-25 & dale2010 \\
+\hline
+A survey of modeling trends in temporal GIS & 2018-06-25 & siabato2018 \\
 \end{tabular}
