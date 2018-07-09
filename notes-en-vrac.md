@@ -134,5 +134,8 @@
 
 # 2018-06-22
 
-* J'arrive pas à trouver un article, il cité dans pas mal de trucs, c'est
+* J'arrive pas à trouver un article, il est cité dans pas mal de trucs, c'est
   bizarre : Harary F. 1969. Graph Theory. Reading, MA: Addison-Wesley
+
+* Après avoir fait la synthèse, je me rends compte que les fiches que j'ai fait
+  sont trop peu détaillées

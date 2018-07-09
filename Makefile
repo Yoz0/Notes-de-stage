@@ -5,7 +5,8 @@ $(PDF_DIR)/%.pdf : %.md
 	pandoc -f markdown -t latex -o $@ $<
 
 $(PDF_DIR)/%.pdf : %.tex
-	pandoc -f latex --bibliography ${BIB} -o $@ $<
+	latexmk -pdf -outdir=${PDF_DIR} $< && \
+	latexmk -outdir=${PDF_DIR} -c;
 
 all: mds tex
 

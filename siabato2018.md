@@ -5,13 +5,17 @@ A survey of modeling trends in temporal GIS
 
 # Résumé
 
-C'est une étude de tous les travaux fait sur les Temporal Geographic Information Systems (T-GIS) dans les dernières années
+C'est une étude de tous les travaux fait sur les Temporal Geographic Information
+Systems (T-GIS) dans les dernières années.
 
 **Mots-clefs** : Espace, Temps, GIS
 
 ![L'évolution des domaines utilisés pour les T-GIS](siabato2018.png)
 
 # Modélisations
+
+Les T-GIS naissent de la croisées de plusieurs domaines : Les bases de donnés
+(spatial) ; la logic et l'algèbre temporel ; et les GIS.
 
 # Commentaires
 

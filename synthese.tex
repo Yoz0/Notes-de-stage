@@ -1,10 +1,21 @@
 \documentclass[a4paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{nameref}
+\usepackage{tabularx}
+
+\newcommand{\comment}[1]{}
+
 \title{Synthèse des articles lus}
 
 \author{Stéphane Kastenbaum}
 
-\date{2018-06-25}
+\date{2018-07-05}
 
 \begin{document}
 
@@ -14,81 +25,246 @@
 
 \subsection{Escape}
 
-Escape est un projet de logiciel pour modéliser les évacuations de villes en cas
-de crise (comme l'explosion d'une usine, ou bien l'inondation d'un pont).  Ces
-crises peuvent modifier l'espace de ville, comme interdire l'accès de certaines
-zone aux piétons, ou bien couper un pont. Ce qui évidemment gêne l'évacuation de
-la population, et doit donc être pris en compte dans la modélisation.
+Escape est un projet d'outil informatique pour modéliser les évacuations de
+villes en cas de crise (comme l'explosion d'une usine, ou bien l'inondation d'un
+pont). Ces crises peuvent modifier l'espace de la ville, comme empêcher l'accès
+de certaines zone aux piétons, ou bien couper un pont. Ceci gêne l'évacuation de
+la population, et est pris en compte dans la modélisation.
 
-Escape sera donc une simulation multi-agents où les agents seront des piétons ou
-des automobilistes qui se déplaceront dans l'espace, tandis qu'il ne connaitront
-pas parfaitement cet espace.
+L'objectif d'Escape est de pouvoir valider un Plan Communal de Sauvegarde (PCS).
+Un PCS est un document décrivant l'organisation à adopter face aux risques de
+désastre naturel, industriel ou sanitaire. Il est écrit par des experts avec
+l'équipe de la mairie. Ils y indique tout ce qu'il faut faire pour informer la
+population sur les risques, l'alerter en cas de crise, la guider lors de
+l'évacuation, et l'assister si besoin est.  Pour valider un PCS, Escape doit
+vérifier la faisabilité et l'efficacité des dispositions proposés.
 
-\subsection{Représentation spatiale}
+Escape s'intéresse principalement à tester les dispositions prises lors de la
+crise. Escape cherche à estimer le temps qu'il faudrait pour que la population
+évacue la ville dans différent scénarios et selon les dispositions prises dans
+le PCS. L'équipe de la mairie peut ainsi tester différentes actions, les évaluer
+et les comparer, pour faire un meilleur PCS.
 
-On doit donc décider d'une façon de modéliser l'espace permettant aux agents de
-se déplacer dans celui-ci. L'espace étant, par exemple, le réseau routier,
-l'ensemble des rues que les piétons peuvent emprunter ou bien le réseau de
-transports en commun.
+Pour simuler l'évacuation de la ville, la méthode mise en œuvre est un système
+multi-agents. Un système multi-agents est un programme informatique où l'on
+simule plusieurs agents autonomes. Un agent est une entité situé dans un
+environnement, capable de prendre des décisions et d'interagir avec son
+environnement. Dans Escape, les agent sont les civils (piétons ou
+automobilistes) et les agents de sécurité.
 
-Il faut que notre modélisation permettent aux agents de savoir où ils sont, et
-quel chemin il doivent prendre pour aller là où ils veulent.
+Dans les systèmes multi-agents, les agents évoluent sur une structure
+informatique modélisant l'espace. Il existe plusieurs type de structures pour
+modéliser l'espace. En effet, différentes structures de modélisations permettent
+de simuler les différentes caractéristiques de l'espace.
 
-  \subsubsection{Superposition de plusieurs réseaux}
+Pour que les agents prennent des décisions, nous devons leur fournir des
+connaissances et un algorithme qui, avec ces connaissances, indique la décision
+à prendre. Nous nous intéressons ici à la structure modélisant la connaissance
+de l'espace. On appelle connaissance de l'espace toutes les informations
+relative à son environment que l'individu a à sa disposition. Il y une grande
+diversité de connaissance, et des individus avec des connaissances différentes
+font des choix différents. Ainsi la modélisation se doit de pouvoir représenter
+cette diversité.
 
-  Souvent dans une ville il y a plusieurs réseaux de transports qui coexistent,
-  par exemple le réseau routier et le réseau de transports en commun. Les
-  relations entre les réseaux sont variés, un piétons peut par exemple prendre
-  le réseau des transports en commun ou décider de marcher jusqu'à sa
-  destination, tandis qu'un automobiliste est obligé d'emprunter le réseau
-  routier ou bien de garer sa voiture est de devenir un piéton.
+Dans la section "\nameref{etat}" nous verrons les différentes structures
+utilisés dans la littérature pour modéliser l'espace et pour modéliser la
+connaissance de l'espace.
 
-  De plus, les différents réseaux peuvent être affectés différemment par les
-  aléas. Une rue peut, par exemple, ne pas être praticable pour les
-  automobiliste, mais être traversable par les piétons.
+On fera bien attention à différencier l'espace réel, la modélisation
+informatique de cet espace, la connaissance qu'ont les individus de l'espace, et
+la modélisation de cette connaissance. Aussi, on parlera «~d'individus~» lorsque
+l'on fera référence aux entités réel et «~d'agents~» pour désigner leur
+modélisation informatique (résumé dans la table \ref{tab:vocab}.
 
-\subsection{Relations spatio-temporels}
+\begin{table}
+  \noindent\makebox[\textwidth]{
+  \begin{tabular}{|c|c|c|c|}
+    % \hline
+    % {}&Espace objectif&Espace subjectif&Entités \\
+    \hline
+    Réel & Espace & Connaissance de l'espace & Individu \\
+    \hline
+    Informatique & Modélisation de l'espace & Modélisation de la connaissance &
+    Agents\\
+    \hline
+  \end{tabular}
+  }
+  \caption{Le vocabulaire utilisé}
+  \label{tab:vocab}
+\end{table}
 
-L'espace peut être amené à se modifier au cours de la simulation, la crue peut
-monter et bloquer d'autres ponts, ou un nuage toxique peut se déplacer par
-exemple. Il est donc important de prévoir une modélisation qui peut facilement
-être modifiée. Les modifications que l'on voudra apporter peuvent prendre
-plusieurs formes : un chemin reliant deux espaces peut être coupé ; un espace
-peut être à éviter et donc tous les chemins menant à cet endroit doivent être
-enlevés ou un chemin peut devenir plus difficile à traverser (le terrain peut
-devenir boueux par exemple) et il faudra noter que la vitesse des agents sur ce
-terrain est ralentie.
+Notre objectif est de modéliser la réalité le plus fidèlement possible. Pour
+cela il faut bien comprendre ce que l'on veut modéliser. Dans la section qui
+suit nous allons décrire les caractéristiques de l'espace et de la connaissance
+de cette espace que nous voulons modéliser.
 
-\subsection{Diversités des connaissances}
+\subsection{L'espace et la connaissance de l'espace}
 
-Dans une ville, il se peut que les agents n'aient pas les mêmes connaissances de
-l'espace, par exemple certaines personnes peuvent connaître certaines rues ou
-des raccourcis que d'autres ne connaissent pas. Cela va évidemment influer sur
-les choix des agents, ainsi la modélisation se doit de pouvoir représenter cette
-diversité.
+On définit l'espace comme étant l'étendue de terre où les individus peuvent se
+déplacer. Cependant, on s'intéresse principalement au déplacements des individus
+sur cette étendue de terre. Il est donc plus pertinent, dans notre contexte, de
+définir l'espace de la ville comme l'ensemble des modes de transports
+disponibles dans la ville. C'est-à-dire le réseau pédestre, le réseau routier,
+les transports en commun, etc.
 
-  \subsubsection{Modification dynamique de la connaissance par la perception}
+La connaissance de l'espace est l'ensemble des informations qu'a un individu à
+propos des moyens de déplacement disponible dans sa ville.  On y inclut
+l'ensemble des rues qu'il connaît, les distances, les routes, les lignes des
+transports en commun et leurs horaires. \comment{On devrait pouvoir améliorer
+cette partie}
 
-  Au cours de la simulation, les agents vont percevoir l'espace et leurs
-  connaissances de l'espace vont être modifié en conséquence. Il faut donc
-  prévoir que les connaissances de chacun peuvent être modifiées.
+Les habitants d'une ville n'ont pas la même connaissance de l'espace. Par
+exemple, certaines personnes connaissent des rues ou des raccourcis que d'autres
+ne connaissent pas, comme illustré sur la figure~\ref{fig:espace}. Autrement
+dit, les individus ont une connaissance personnelle de l'espace. Cette
+connaissance peut être partiel et/ou inexacte. Il y a autant de connaissance de
+l'espace possible que d'individus. Cependant cette diversité des connaissances
+est mitigé par le fait que les individus ont accès à des sources d'informations
+communes comme les cartes, les panneaux indicateur dans les rues, et les
+connaissances des autres individus lorsqu'ils discutent.
 
-  \subsubsection{Partage de la connaissance entre agents}
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=3]
+    \newcommand{\drawMissing}[3]{
+      \draw[dotted, thin] (#1) -- (#2) node[midway, #3] {?};
+    }
 
-  Parfois deux agents n'aillant pas la même connaissance de l'espace vont se
-  rencontrer et ils vont mettre en commun leurs connaissance. Il faut réfléchir
-  à une façon de fusionner les connaissance et de juger quel individu va
-  convaincre l'autre que sa connaissance est la plus exacte et doit être
-  conservée.
+    \newcommand{\drawSpace}[1]{
+      \node[draw, circle, minimum width=5em] (C) at (0,2) {Maison 1};
+      \node[draw, circle, minimum width=5em] (D) at (0.5,0) {Maison 2};
+      \node[draw, circle, minimum width=5em] (A) at (1,1) {Travail};
+      \node[draw, circle, minimum width=5em] (B) at (0,1) {};
+      \node[draw, rectangle, rounded corners, fill=blue!20] at (0.5, -0.5) {#1};
+    }
+
+    \begin{scope}[shift={(0,0)}]
+      \drawSpace{Espace objectif}
+      \draw (A) to (C);
+      \draw (B) to (C);
+      \draw (B) to (D);
+      \draw (A) to (D);
+    \end{scope}
+
+    \begin{scope}[shift={(-1,-3)}]
+      \drawSpace{Connaissance de l'individu 1}
+      \draw (A) to (C);
+      \draw (B) to (C);
+      \draw (B) to (D);
+      \drawMissing{A}{D}{right}
+    \end{scope}
+
+    \begin{scope}[shift={(1,-3)}]
+      \drawSpace{Connaissance de l'individu 2}
+      \drawMissing{A}{C}{above right}
+      \draw (B) to (C);
+      \draw (B) to (D);
+      \draw (A) to (D);
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{La différence entre l'espace objectif, et la connaissance de
+  l'espace. L'individu 1 ne connait pas le chemin entre la maison 2 et le lieu
+  de travail, et réciproquement pour l'individu 2}
+  \label{fig:espace}
+\end{figure}
+
+Souvent dans une ville plusieurs réseaux de transports coexistent, par exemple
+le réseau routier et le réseau de transports en commun. Ces réseau ne sont pas
+forcément accessibles par tous les individus, et certains individus peuvent
+emprunter plusieurs réseaux consécutivement. Par exemple, un piéton peut
+emprunter les transports en commun puis décider de marcher jusqu'à sa
+destination, tandis qu'un automobiliste est obligé d'emprunter le réseau routier
+ou bien de garer sa voiture et de devenir un piéton.
+
+Ce type de déplacements multimodaux, \comment{je me sens pas à l'aise avec ce
+mot} apporte une personnalisation des individus supplémentaire. Non seulement
+les individus ne connaissent pas la ville de la même façon, mais leur accès
+aux moyens de transports de la ville est différent.
+
+De plus, les différents réseaux peuvent être affectés différemment par les
+aléas. Une rue peut, par exemple, ne pas être praticable pour les automobiliste
+à cause de la pluie, mais être traversable par les piétons.
+
+On a deux concepts à modéliser : l'espace, l'ensemble des modes de transports de
+la ville ; et la connaissance de cet espace, toutes les informations qu'ont les
+individus sur cet espace. Cependant, lors d'une crise naturelle ou industrielle,
+l'espace est modifié par les aléas et les individus apprennent que l'espace est
+modifié, donc leurs connaissances sont modifiés. Les modifications de l'espace
+et des connaissances sont dynamiques \comment{HMMMM} d'où la nécessité de
+s'intéresser à l'évolution temporelle de l'espace et des connaissances.
+
+\subsection{Évolution temporelle}
+
+L'espace peut être amené à se modifier au cours de la crise. Une modification de
+l'espace est tout changement affectant le déplacement des individus.  Les
+modifications peuvent prendre plusieurs formes. Il y a des modifications qui
+empêche complètement l'accès à certaines zones (ex: zone inondée). D'autre qui
+coupe une arête d'un réseau de transport (ex : pont qui s'écroule). Il y a aussi
+des modifications plus légères qui n'empêchent pas totalement l'accès à une
+zone, mais le rends plus difficile (ex : le terrain devient boueux).
+
+La modification peut avoir plusieurs causes, le cas le plus courant dans notre
+cas étant que l'aléa \comment{il faut que j'arrête d'utiliser "aléa" pour parler
+de la source des dégâts, c'est pas le bon mot} détruise une partie du réseau. La
+modification de l'espace peut aussi être du au actions de l'homme. Typiquement,
+un PCS peut recommander de fermer un pont par soucis de sécurité.
+
+Lorsque l'espace est modifié pendant la crise, les individus ne sont à priori
+pas au courant de cette modification. Pour l'intégrer à leur connaissance, il
+faut soit qu'ils le voient, soit que l'information leur parvienne par une source
+quelconque.
+
+La multitudes des sources d'informations disponibles et leur non-harmonisation
+provoque des conflits. C'est-à-dire que certains individus reçoivent deux
+informations contradictoires de deux sources différentes. Dans cette situation,
+les individus doivent réfléchir \comment{réfléchir c'est trop neutre} pour
+choisir quelle information ils doivent conserver.
+
+Parfois les individus se regroupent. Si dans un groupe plusieurs personnes n'ont
+pas la même connaissance de l'espace, il est probable qu'ils aient du mal à
+prendre une décision ensemble où les deux parties soient en accord. Leur
+différence de connaissances entraine une différence de décision. Dans cette
+situation un des deux individus convainc l'autre que sa connaissance est la plus
+proche de la réalité.
+
+Ces évolutions temporelle amènent les individus à devoir sans cesse réévaluer
+leurs choix, puisqu'un chemin autrefois jugé optimal doit être revu si il est
+affecté par l'aléa. De plus les individus peuvent apprendre de nouvelles
+informations, ce qui les obligent à réévalué leurs choix à la lumières des
+nouvelles informations. Si l'on veut modéliser les prises de décisions des
+individus, on doit simuler ces prises de décisions. La fréquence des
+modifications de l'espace et des connaissances de l'espace amène alors des
+soucis de faisabilité.
 
 \subsection{Contraintes techniques}
 
-La ville étant un espace grand et complexe, et le nombre d'agents gigantesque,
-il va falloir faire très attention à la taille mémoire que va prendre la
-modélisation et à la quantité de calculs nécessaire à la simulation notamment,
-les calculs de plus court chemins que vont faire les agents.
+La ville est un espace grand et complexe, et le nombre d'agents est gigantesque.
+Pour se donner un ordre d'idée, à Rouen on compte 110 169 habitants sur une
+superficie de 21 km$^2$. De fait il faut faire très attention à la taille
+mémoire que va prendre la modélisation.
+
+De plus, les agents appliquent souvent des algorithmes particulièrement long sur
+des structures de données complexe tel que la recherche de plus court chemins.
+Il faut veiller à ce que la modélisation choisie permette de faire tourner ces
+algorithmes en un temps raisonnable.
+
+\subsection{Conclusion}
+
+Escape est une application faite pour simuler des évacuation de ville à l'aide
+d'un  système multi agents. On veut modéliser l'espace et l'ensemble des
+informations que peut avoir un individu à propos de cet espace. Dans le but de
+faire une modélisation fidèle nous avons décrit les caractéristiques de l'espace
+que nous voulons conserver. On a parlé de la complexité des réseaux, des
+déplacements multimodaux, les différences d'informations qu'ont les individus,
+et de l'évolution temporelle de l'espace et des connaissances. Le souci pour
+faire une modélisation fidèle, c'est que nos capacités de calculs et d'espace
+mémoire ne sont pas infinies. On ne peut pas faire tout ce qu'on veut, il faut
+être malin. Dans la prochaine section nous allons faire un état de l'art des
+structures informatiques pour modéliser l'espace et la connaissance de l'espace.
 
 \section{État de l'art}
+\label{etat}
 
 Il existe plusieurs façon de représenter l'espace : en matrice comme dans
 \cite{batty1999} qui sont utiles pour représenter les étendues, les
@@ -96,8 +272,8 @@ Il existe plusieurs façon de représenter l'espace : en matrice comme dans
 représentation des frontières, Region Connection Calculus (RCC-8)
 \cite{randell1992} définit les régions et leurs connections topologiques (se
 touchent, se superposent, à l'intérieur de...) ou bien les graphes spatiaux qui
-représentent l'espace comme un agrégat de nodes reliés par des arêtes, qui sont
-très pratiques pour considérer les chemins. Les graphes sont utilisés dans comme
+représentent l'espace comme un agrégat de nœuds reliés par des arêtes, qui sont
+très pratiques pour considérer les chemins. Les graphes sont utilisés comme
 représentions de l'espace dans beaucoup de modélisations, comme le montre
 \cite{dale2010}.
 
@@ -107,50 +283,51 @@ agents.
 
 Il y a des multiples façon de représenter l'espace avec des graphes. Pour le
 réseau de rues par exemple on peut considérer que les intersections des rues
-sont des nodes et relier chaque nodes si il y a un tronçon de rue entre les deux
-[ref]. On peut aussi prendre le graphe dual et avoir chaque tronçon de rue comme
-nodes et deux nodes sont reliés si elles se croisent [ref]. Ou bien encore
-chaque rue est une node et relier deux nodes si les rues s'intersectent [ref].
-On peut faire de même pour le réseau routier ou celui des transport en commun.
+sont des nœuds et relier chaque nœud si il y a un tronçon de rue entre les
+deux.\comment{Ajouter un référence} On peut aussi prendre le graphe dual et
+avoir chaque tronçon de rue comme nœuds et deux nœuds sont reliés si les deux
+tronçons se croisent. Ou bien encore chaque rue est un nœud et relier deux nœuds
+si les rues s'intersectent. On peut faire de même pour le réseau routier ou
+celui des transport en commun.
 
-Pour représenter l'espace, on peut aussi parler de granularité (#TOCHANGE), les
-\emph{stratified map space} dans \cite{stell1998} sont des représentations de
-l'espace selon plusieurs degrés de précisions sémantiques et géographiques.
-C'est particulièrement utile pour représenter simplement un espace qui a
-beaucoup de détails. En effet il est parfois plus intéressant d'enlever de la
-complexité à une modélisation pour la rendre plus lisible. C'est le principe de
-généralisation en cartographique, par exemple \cite{mackaness1993} utilise la
-théorie des graphes pour déterminer quels attributs peuvent être enlevés pour
-une représentation plus générale.
+Pour représenter l'espace, on peut aussi parler de granularité, \comment{Pas
+esthétique il faudrait changer} les \emph{stratified map space} dans
+\cite{stell1998} sont des représentations de l'espace selon plusieurs degrés de
+précisions sémantiques et géographiques. C'est particulièrement utile pour
+représenter simplement un espace qui a beaucoup de détails. En effet il est
+parfois plus intéressant d'enlever de la complexité à une modélisation pour la
+rendre plus lisible. C'est le principe de généralisation en cartographique, par
+exemple \cite{mackaness1993} utilise la théorie des graphes pour déterminer
+quels attributs peuvent être enlevés pour une représentation plus générale.
 
 Les \emph{stratified map space} ressemblent un peu au \emph{multi level overlay
 graphs}\cite{holzer2009}. Ce sont des graphes auquel on ajoute une couche
-supplémentaire qui est une sélection des nodes les plus importantes pour le
-calcul de chemins, on relie ces nodes avec le plus court chemin entre elles cela
-permet ensuite de retrouver le plus court chemin entre toutes les nodes plus
-rapidement. Pour notre utilisations, \cite{bruera2008} qui rends ces
-\emph{overlay graphs} dynamiques, est particulièrement intéressant.
+supplémentaire qui est une sélection des nœuds les plus importants pour le
+calcul de chemins, on relie ces nœuds avec le plus court chemin entre eux cela
+permet ensuite de retrouver le plus court chemin entre tous les nœuds plus
+rapidement. Pour notre utilisation, \cite{bruera2008} qui rend ces \emph{overlay
+graphs} dynamiques, est particulièrement intéressant.
 
 Malgré les différentes façon de décrire le temps une semble faire consensus,
 celle développée dans \cite{allen1985}. Il définit une algèbre avec les
 intervalles de temps comme objet de base et avec ceux-ci définit des relations
-et tout ce qu'il faut pour avoir une algèbre temporel complète.
+et tout ce qu'il faut pour avoir une algèbre temporelle complète.
 
-Lorsqu'on parle de dynamisme spatio-temporel on voit souvent des articles qui
-s'intéresse aux processus modifiant l'espaces. Certains, comme
-\cite{claramunt1995}, décrivent les processus et évènements comme des entités.
+Lorsqu'on parle de dynamique spatio-temporelle on voit souvent des articles qui
+s'intéresse aux processus modifiant l'espace. Certains, comme
+\cite{claramunt1995} décrivent les processus et évènements comme des entités.
 Ce sont des \emph{Temporal Geographic Information Systems}(T-GIS),
 \cite{siabato2018} fait une étude de tous travaux fait sur les T-GIS. D'autres
 comme \cite{delmondo2011} et \cite{costes2015} se penchent sur la représentation
 des relations entre les objets dans des espaces et des instants différents.
 
 Il semble que nous devrons faire quelque chose dans le genre de
-\cite{jguirim2015}, où auteur décrit comment chaque individus a un profil
+\cite{jguirim2015} où l'auteur décrit comment chaque individu a un profil
 différent. Dans leurs modélisations, tous les individus sont des piétons, mais
 ils marchent à des vitesses différentes, et certains ont accès au réseau de
 transports en commun.
 
-En ce qui concerne la modélisations des connaissances, on a peu d'articles
+En ce qui concerne la modélisations des connaissances, on ait peu d'articles
 traitant ce sujet de la façon dont on voudrait le traiter. Il existe des études
 sur les niveaux de connaissances, comme dans \cite{stern1988} qui fait une étude
 pour mesurer le niveau de connaissance de la ville qu'ont les conducteurs
@@ -168,8 +345,8 @@ Il semblerait qu'il y a peu d'articles détaillant la façon dont on peut
 modéliser la diversité des connaissances de l'espace qu'ont les individus.
 Idéalement on aimerait une façon de modéliser la différence entre le graphe
 représentant l'espace et celui représentant la connaissance qu'a un individu de
-cette espace. Comme les individus peuvent avoir une partie de connaissance en
-commun il faudrait pouvoir le modéliser.
+cet espace. Comme les individus peuvent avoir une partie de connaissance en
+commun il faudrait pouvoir la modéliser.
 
 Comme la simulation multi-agents va souvent demander aux agents de décider où
 aller, il faut trouver une technique pour ne pas avoir à refaire tout le calcul
@@ -179,6 +356,6 @@ peuvent être une piste pour résoudre ce problème.
 
 \section{Bibliographie}
 
-\bibliographystyle{plain-fr} \bibliography{biblio.bib}
+\bibliographystyle{plain} \bibliography{biblio.bib}
 
 \end{document}
