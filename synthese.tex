@@ -8,8 +8,9 @@
 \usepackage{tikz}
 \usepackage{nameref}
 \usepackage{tabularx}
+\usepackage{comments}
 
-\newcommand{\comment}[1]{}
+% \newcommand{\comment}[1]{}
 
 \title{Synthèse des articles lus}
 
@@ -25,32 +26,34 @@
 
 \subsection{Escape}
 
-Escape est un projet d'outil informatique pour modéliser les évacuations de
-villes en cas de crise (comme l'explosion d'une usine, ou bien l'inondation d'un
-pont). Ces crises peuvent modifier l'espace de la ville, comme empêcher l'accès
-de certaines zone aux piétons, ou bien couper un pont. Ceci gêne l'évacuation de
-la population, et est pris en compte dans la modélisation.
+Escape est un projet visant à définir des outils informatiques pour modéliser
+les évacuations de villes en cas de crise (comme l'explosion d'une usine, ou
+bien la rupture d'une digue). Ces situations de crises peuvent modifier l'espace
+de la ville, comme empêcher l'accès de certaines zone aux piétons, ou bien
+couper un pont.  Ceci gêne l'évacuation de la population, et doit être pris en
+compte dans la modélisation.
 
-L'objectif d'Escape est de pouvoir valider un Plan Communal de Sauvegarde (PCS).
-Un PCS est un document décrivant l'organisation à adopter face aux risques de
-désastre naturel, industriel ou sanitaire. Il est écrit par des experts avec
-l'équipe de la mairie. Ils y indique tout ce qu'il faut faire pour informer la
-population sur les risques, l'alerter en cas de crise, la guider lors de
-l'évacuation, et l'assister si besoin est.  Pour valider un PCS, Escape doit
-vérifier la faisabilité et l'efficacité des dispositions proposés.
+L'objectif d'Escape est de pouvoir valider des plans d'évacuation comme un Plan
+Communal de Sauvegarde (PCS). Un PCS est un document décrivant l'organisation à
+adopter face aux risques de désastre naturel, industriel ou sanitaire. Il est
+écrit par des experts avec l'équipe de la mairie. Ils y indique tout ce qu'il
+faut faire pour informer la population sur les risques, l'alerter en cas de
+crise, la guider lors de l'évacuation, et l'assister si besoin est. Pour
+valider un PCS, Escape doit vérifier la faisabilité et l'efficacité des
+dispositions proposés dans le plan.
 
 Escape s'intéresse principalement à tester les dispositions prises lors de la
-crise. Escape cherche à estimer le temps qu'il faudrait pour que la population
-évacue la ville dans différent scénarios et selon les dispositions prises dans
-le PCS. L'équipe de la mairie peut ainsi tester différentes actions, les évaluer
-et les comparer, pour faire un meilleur PCS.
+crise. Escape cherche entre autres à estimer le temps qu'il faudrait pour que la
+population évacue la ville dans différent scénarios et selon les dispositions
+prises dans le PCS. L'équipe de la mairie peut ainsi tester différentes actions,
+les évaluer et les comparer, pour faire un meilleur PCS.
 
 Pour simuler l'évacuation de la ville, la méthode mise en œuvre est un système
 multi-agents. Un système multi-agents est un programme informatique où l'on
 simule plusieurs agents autonomes. Un agent est une entité situé dans un
-environnement, capable de prendre des décisions et d'interagir avec son
-environnement. Dans Escape, les agent sont les civils (piétons ou
-automobilistes) et les agents de sécurité.
+environnement, auquel on associe un comportement le rendant capable de prendre
+des décisions et d'interagir avec son environnement. Dans Escape, les agent sont
+les civils (piétons ou automobilistes) et les agents de gestion de crise.
 
 Dans les systèmes multi-agents, les agents évoluent sur une structure
 informatique modélisant l'espace. Il existe plusieurs type de structures pour
@@ -70,21 +73,22 @@ Dans la section "\nameref{etat}" nous verrons les différentes structures
 utilisés dans la littérature pour modéliser l'espace et pour modéliser la
 connaissance de l'espace.
 
-On fera bien attention à différencier l'espace réel, la modélisation
+On fera bien attention à différencier l'espace réels, la modélisation
 informatique de cet espace, la connaissance qu'ont les individus de l'espace, et
 la modélisation de cette connaissance. Aussi, on parlera «~d'individus~» lorsque
 l'on fera référence aux entités réel et «~d'agents~» pour désigner leur
-modélisation informatique (résumé dans la table \ref{tab:vocab}.
+modélisation informatique (résumé dans la table \ref{tab:vocab}).
 
 \begin{table}
   \noindent\makebox[\textwidth]{
-  \begin{tabular}{|c|c|c|c|}
+  \begin{tabular}{|c||c|c|c|}
     % \hline
     % {}&Espace objectif&Espace subjectif&Entités \\
     \hline
-    Réel & Espace & Connaissance de l'espace & Individu \\
+    Environnement réel & Espace & Connaissance de l'espace & Individu \\
     \hline
-    Informatique & Modélisation de l'espace & Modélisation de la connaissance &
+    Modélisation informatique & Modélisation de l'espace & Modélisation de la
+    connaissance &
     Agents\\
     \hline
   \end{tabular}
@@ -101,41 +105,45 @@ de cette espace que nous voulons modéliser.
 \subsection{L'espace et la connaissance de l'espace}
 
 On définit l'espace comme étant l'étendue de terre où les individus peuvent se
-déplacer. Cependant, on s'intéresse principalement au déplacements des individus
-sur cette étendue de terre. Il est donc plus pertinent, dans notre contexte, de
+déplacer. Dans le contexte de l'évacuation de ville, il est plus pertinent de
 définir l'espace de la ville comme l'ensemble des modes de transports
-disponibles dans la ville. C'est-à-dire le réseau pédestre, le réseau routier,
-les transports en commun, etc.
+disponibles dans la ville, car c'est principalement via ces réseaux que les
+individus vont évacuer la ville. C'est-à-dire le réseau pédestre, le réseau
+routier, les transports en commun, etc.
 
 La connaissance de l'espace est l'ensemble des informations qu'a un individu à
-propos des moyens de déplacement disponible dans sa ville.  On y inclut
-l'ensemble des rues qu'il connaît, les distances, les routes, les lignes des
-transports en commun et leurs horaires. \comment{On devrait pouvoir améliorer
-cette partie}
+propos des modes de transport disponible dans sa ville et leurs modalités.  On y
+inclut l'ensemble des rues qu'il connaît, les distances, les routes, les lignes
+des transports en commun, leurs horaires etc.
 
 Les habitants d'une ville n'ont pas la même connaissance de l'espace. Par
 exemple, certaines personnes connaissent des rues ou des raccourcis que d'autres
 ne connaissent pas, comme illustré sur la figure~\ref{fig:espace}. Autrement
 dit, les individus ont une connaissance personnelle de l'espace. Cette
-connaissance peut être partiel et/ou inexacte. Il y a autant de connaissance de
-l'espace possible que d'individus. Cependant cette diversité des connaissances
-est mitigé par le fait que les individus ont accès à des sources d'informations
-communes comme les cartes, les panneaux indicateur dans les rues, et les
-connaissances des autres individus lorsqu'ils discutent.
+connaissance peut être partielle et/ou inexacte. On peut supposer qu'il existe
+autant de connaissance de l'espace possible que d'individus. Cependant cette
+diversité des connaissances est contrebalancée par le fait que les individus ont
+accès à des sources d'information communes comme les cartes, les panneaux
+indicateurs dans les rues, et les connaissances des autres individus lorsqu'ils
+discutent.
 
+Alors il y a pleins de sources d'info différentes des cartes : gmap, cartes
+papiers, cartes sur GPS. Bouche à oreilles,\comment{PLUS !!!}
+
+\tikzset{legende/.style={draw, rectangle, rounded corners, fill=blue!20}}
 \begin{figure}
   \centering
-  \begin{tikzpicture}[scale=3]
+  \begin{tikzpicture}[scale=2]
     \newcommand{\drawMissing}[3]{
       \draw[dotted, thin] (#1) -- (#2) node[midway, #3] {?};
     }
 
     \newcommand{\drawSpace}[1]{
-      \node[draw, circle, minimum width=5em] (C) at (0,2) {Maison 1};
-      \node[draw, circle, minimum width=5em] (D) at (0.5,0) {Maison 2};
-      \node[draw, circle, minimum width=5em] (A) at (1,1) {Travail};
-      \node[draw, circle, minimum width=5em] (B) at (0,1) {};
-      \node[draw, rectangle, rounded corners, fill=blue!20] at (0.5, -0.5) {#1};
+      \node[draw, circle] (C) at (0,2) {Maison 1};
+      \node[draw, circle] (D) at (0.5,0) {Maison 2};
+      \node[draw, circle] (A) at (1,1) {Travail};
+      \node[draw, circle] (B) at (0,1) {};
+      \node[legende] at (0.5, -0.75) {#1};
     }
 
     \begin{scope}[shift={(0,0)}]
@@ -146,7 +154,7 @@ connaissances des autres individus lorsqu'ils discutent.
       \draw (A) to (D);
     \end{scope}
 
-    \begin{scope}[shift={(-1,-3)}]
+    \begin{scope}[shift={(-1.5,-4)}]
       \drawSpace{Connaissance de l'individu 1}
       \draw (A) to (C);
       \draw (B) to (C);
@@ -154,7 +162,7 @@ connaissances des autres individus lorsqu'ils discutent.
       \drawMissing{A}{D}{right}
     \end{scope}
 
-    \begin{scope}[shift={(1,-3)}]
+    \begin{scope}[shift={(1.5,-4)}]
       \drawSpace{Connaissance de l'individu 2}
       \drawMissing{A}{C}{above right}
       \draw (B) to (C);
@@ -177,65 +185,70 @@ emprunter les transports en commun puis décider de marcher jusqu'à sa
 destination, tandis qu'un automobiliste est obligé d'emprunter le réseau routier
 ou bien de garer sa voiture et de devenir un piéton.
 
-Ce type de déplacements multimodaux, \comment{je me sens pas à l'aise avec ce
-mot} apporte une personnalisation des individus supplémentaire. Non seulement
-les individus ne connaissent pas la ville de la même façon, mais leur accès
-aux moyens de transports de la ville est différent.
+Ces types de déplacements multimodaux apportent une caractérisation des
+individus supplémentaire. Non seulement les individus ne connaissent pas la
+ville de la même façon, mais leur accès aux moyens de transports de la ville est
+différent.
 
 De plus, les différents réseaux peuvent être affectés différemment par les
 aléas. Une rue peut, par exemple, ne pas être praticable pour les automobiliste
 à cause de la pluie, mais être traversable par les piétons.
 
-On a deux concepts à modéliser : l'espace, l'ensemble des modes de transports de
-la ville ; et la connaissance de cet espace, toutes les informations qu'ont les
-individus sur cet espace. Cependant, lors d'une crise naturelle ou industrielle,
-l'espace est modifié par les aléas et les individus apprennent que l'espace est
-modifié, donc leurs connaissances sont modifiés. Les modifications de l'espace
-et des connaissances sont dynamiques \comment{HMMMM} d'où la nécessité de
-s'intéresser à l'évolution temporelle de l'espace et des connaissances.
+Finalement, il y a deux concepts à modéliser : l'espace, autrement dit
+l'ensemble des modes de transports de la ville ; et la connaissance de cet
+espace, c'est-à-dire toutes les informations qu'ont les individus sur cet
+espace. Cependant, lors d'une crise naturelle ou industrielle, l'espace est
+modifié par les aléas et les individus vont prendre progressivement connaissance
+de la modification de cet espace, donc leurs connaissances sont modifiées. Les
+modifications de l'espace et des connaissances sont dynamiques d'où la nécessité
+de s'intéresser à l'évolution temporelle de l'espace et des connaissances.
 
 \subsection{Évolution temporelle}
 
-L'espace peut être amené à se modifier au cours de la crise. Une modification de
-l'espace est tout changement affectant le déplacement des individus.  Les
-modifications peuvent prendre plusieurs formes. Il y a des modifications qui
-empêche complètement l'accès à certaines zones (ex: zone inondée). D'autre qui
-coupe une arête d'un réseau de transport (ex : pont qui s'écroule). Il y a aussi
+L'espace de la ville peut être amené à se modifier au cours de la crise. Une
+modification de cet espace est tout changement affectant le déplacement des
+individus. Les modifications peuvent prendre plusieurs formes. Il y a des
+modifications qui empêche complètement l'accès à certaines zones, e.g., la
+propagation d'un gaz toxique, dû à l'explosion d'une usine. D'autre qui coupe
+une arête d'un réseau de transport, e.g., l'effondrement d'un pont. Il y a aussi
 des modifications plus légères qui n'empêchent pas totalement l'accès à une
-zone, mais le rends plus difficile (ex : le terrain devient boueux).
+zone, mais le rends plus difficile, e.g., le terrain devient boueux.
 
 La modification peut avoir plusieurs causes, le cas le plus courant dans notre
-cas étant que l'aléa \comment{il faut que j'arrête d'utiliser "aléa" pour parler
-de la source des dégâts, c'est pas le bon mot} détruise une partie du réseau. La
-modification de l'espace peut aussi être du au actions de l'homme. Typiquement,
-un PCS peut recommander de fermer un pont par soucis de sécurité.
+cas étant que l'aléa altère une partie du réseau. La modification de l'espace
+peut aussi être dûs aux actions de l'homme. Typiquement, un PCS peut
+recommander de fermer un pont par soucis de sécurité.
 
 Lorsque l'espace est modifié pendant la crise, les individus ne sont à priori
-pas au courant de cette modification. Pour l'intégrer à leur connaissance, il
-faut soit qu'ils le voient, soit que l'information leur parvienne par une source
-quelconque.
+pas immédiatement au courant de cette modification. Pour l'intégrer à leur
+connaissance, il faut soit qu'ils la voient, soit que l'information leur
+parvienne par une source quelconque.
 
-La multitudes des sources d'informations disponibles et leur non-harmonisation
-provoque des conflits. C'est-à-dire que certains individus reçoivent deux
-informations contradictoires de deux sources différentes. Dans cette situation,
-les individus doivent réfléchir \comment{réfléchir c'est trop neutre} pour
-choisir quelle information ils doivent conserver.
+La multitudes des sources d'information disponibles et leur non-harmonisation
+provoque des conflits. En fait les sources d'information ne se mettent pas
+toutes à jour automatiquement. Et les individus ne regardent pas tout le temps
+les sources d'information.\comment{expliquer pourquoi les sources d'info ne sont
+pas harmonisés} C'est-à-dire que certains individus reçoivent des informations
+contradictoires de plusieurs sources différentes. Dans cette situation, les
+individus doivent réfléchir pour choisir quelle information ils doivent
+conserver.
 
-Parfois les individus se regroupent. Si dans un groupe plusieurs personnes n'ont
-pas la même connaissance de l'espace, il est probable qu'ils aient du mal à
-prendre une décision ensemble où les deux parties soient en accord. Leur
-différence de connaissances entraine une différence de décision. Dans cette
-situation un des deux individus convainc l'autre que sa connaissance est la plus
-proche de la réalité.
+Parfois les individus se regroupent. Dans un groupe plusieurs personnes peuvent
+ne pas avoir la même connaissance de l'espace. Comme leurs décisions sont prises
+à partir des informations qu'ils possèdent, leur différence de connaissances
+entraine une différence de décision. Cependant, comme ils sont dans le même
+groupe une seule décision peut être prise. L'un des individus doit convaincre
+les autres que sa décision est la meilleure car sa connaissance est plus proche
+de la réalité.\comment{Retravailler ce para}
 
-Ces évolutions temporelle amènent les individus à devoir sans cesse réévaluer
+Ces évolutions temporelles amènent les individus à devoir sans cesse réévaluer
 leurs choix, puisqu'un chemin autrefois jugé optimal doit être revu si il est
 affecté par l'aléa. De plus les individus peuvent apprendre de nouvelles
-informations, ce qui les obligent à réévalué leurs choix à la lumières des
-nouvelles informations. Si l'on veut modéliser les prises de décisions des
-individus, on doit simuler ces prises de décisions. La fréquence des
-modifications de l'espace et des connaissances de l'espace amène alors des
-soucis de faisabilité.
+informations, ce qui les obligent à réévaluer leurs choix à la lumières de
+celles-ci. Pour modéliser les prises de décisions des individus, on doit faire
+un certains nombre de calculs. La fréquence des modifications de l'espace et des
+connaissances de l'espace pose la question de la complexité à prendre en compte
+pour résoudre le problème.
 
 \subsection{Contraintes techniques}
 
@@ -252,16 +265,16 @@ algorithmes en un temps raisonnable.
 \subsection{Conclusion}
 
 Escape est une application faite pour simuler des évacuation de ville à l'aide
-d'un  système multi agents. On veut modéliser l'espace et l'ensemble des
+d'un système multi agents. On veut modéliser l'espace et l'ensemble des
 informations que peut avoir un individu à propos de cet espace. Dans le but de
 faire une modélisation fidèle nous avons décrit les caractéristiques de l'espace
-que nous voulons conserver. On a parlé de la complexité des réseaux, des
+que nous voulons conserver. Nous avons évoqué la complexité des réseaux, des
 déplacements multimodaux, les différences d'informations qu'ont les individus,
-et de l'évolution temporelle de l'espace et des connaissances. Le souci pour
-faire une modélisation fidèle, c'est que nos capacités de calculs et d'espace
-mémoire ne sont pas infinies. On ne peut pas faire tout ce qu'on veut, il faut
-être malin. Dans la prochaine section nous allons faire un état de l'art des
-structures informatiques pour modéliser l'espace et la connaissance de l'espace.
+et de l'évolution temporelle de l'espace et des connaissances. Un point à ne pas
+négliger pour produire une modélisation fidèle est la complexité du problème. De
+fait nos capacités de calculs et d'espace mémoire ne sont pas infinies. Dans la
+prochaine section nous allons faire un état de l'art des structures
+informatiques pour modéliser l'espace et la connaissance de l'espace.
 
 \section{État de l'art}
 \label{etat}
@@ -290,7 +303,57 @@ tronçons se croisent. Ou bien encore chaque rue est un nœud et relier deux nœ
 si les rues s'intersectent. On peut faire de même pour le réseau routier ou
 celui des transport en commun.
 
-Pour représenter l'espace, on peut aussi parler de granularité, \comment{Pas
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=1]
+    \begin{scope}
+      \node[draw, circle] (A) at (0,4) {A};
+      \node[draw, circle] (B) at (0,2) {B};
+      \node[draw, circle] (C) at (0,0) {C};
+      \node[draw, circle] (D) at (2,4) {D};
+      \node[draw, circle] (E) at (2,2) {E};
+      \node[draw, circle] (F) at (2,0) {F};
+      \node[legende] at (1,-1) {Graphe primal};
+
+      \draw (A) -- (B) node[left, midway] {$\alpha$};
+      \draw (C) -- (B) node[left, midway] {$\beta$};
+      \draw (E) -- (B) node[above, midway] {$\gamma$};
+      \draw (D) -- (E) node[right, midway] {$\delta$};
+      \draw (F) -- (E) node[right, midway] {$\epsilon$};
+    \end{scope}
+
+    \begin{scope}[shift={(-3,-5)}]
+      \node[draw, circle] (al) at (-0.5,3) {$\alpha$};
+      \node[draw, circle] (be) at (-0.5,1) {$\beta$};
+      \node[draw, circle] (ga) at (1,2) {$\gamma$};
+      \node[draw, circle] (de) at (2.5,3) {$\delta$};
+      \node[draw, circle] (ep) at (2.5,1) {$\epsilon$};
+      \node[legende] at (1,0) {Graphe dual};
+
+      \draw (al) -- (be) node[left, midway] {B};
+      \draw (al) -- (ga) node[above right, midway] {B};
+      \draw (ga) -- (be) node[below right, midway] {B};
+      \draw (ga) -- (de) node[above left, midway] {E};
+      \draw (ga) -- (ep) node[below left, midway] {E};
+      \draw (de) -- (ep) node[right, midway] {E};
+    \end{scope}
+
+    \begin{scope}[shift={(3, -3)}]
+      \node[draw, circle] (ab) at (-0.5,0) {$\alpha\beta$};
+      \node[draw, circle] (ga) at (1,0) {$\gamma$};
+      \node[draw, circle] (de) at (2.5,0) {$\delta\epsilon$};
+      \node[legende] at (1,-2) {Graphe des rues};
+
+      \draw (ab) -- (ga) node[above, midway] {B};
+      \draw (de) -- (ga) node[above, midway] {E};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Comparaisons des graphes primal, dual et des rues, du même réseau des
+  rues. Les lettres grecs représentent des tronçons de rues, et les lettres
+  latines représentent les intersections.}
+\end{figure}
+
+Pour représenter l'espace, on peut aussi parler de granularité,\comment{Pas
 esthétique il faudrait changer} les \emph{stratified map space} dans
 \cite{stell1998} sont des représentations de l'espace selon plusieurs degrés de
 précisions sémantiques et géographiques. C'est particulièrement utile pour
