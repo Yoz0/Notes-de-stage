@@ -170,4 +170,6 @@ landscapes of mobility & 2018-06-15 & quinn2018 \\
 From graphs to spatial graphs & 2018-06-25 & dale2010 \\
 \hline
 A survey of modeling trends in temporal GIS & 2018-06-25 & siabato2018 \\
+\hline
+The network analysis of urban streets: A dual approach & 2018-07-18 &porta2005\\
 \end{tabular}
