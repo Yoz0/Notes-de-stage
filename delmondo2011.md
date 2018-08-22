@@ -36,8 +36,8 @@ bigraphes mais pas utile pour moi je crois.
 
 ```
 @phdthesis{delmondo2011,
-  TITLE = {{A SPATIO-TEMPORAL GRAPH-BASED MODEL FOR THE EVOLUTION OF
-  GEOGRAPHICAL ENTITIES}},
+  TITLE = {{A Spatio-Temporal Graph-Based Model for the Evolution of
+  Geographical Entities}},
   AUTHOR = {Del Mondo, G{\'e}raldine},
   URL = {https://tel.archives-ouvertes.fr/tel-00651682},
   SCHOOL = {{Universit{\'e} de Bretagne occidentale - Brest}},
