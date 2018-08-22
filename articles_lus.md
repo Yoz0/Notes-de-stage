@@ -172,4 +172,7 @@ From graphs to spatial graphs & 2018-06-25 & dale2010 \\
 A survey of modeling trends in temporal GIS & 2018-06-25 & siabato2018 \\
 \hline
 The network analysis of urban streets: A dual approach & 2018-07-18 &porta2005\\
+\hline
+On a relation between graph edit distance and maximum common subgraph &
+2018-0-22 & bunke1997 \\
 \end{tabular}
