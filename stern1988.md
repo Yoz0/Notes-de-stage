@@ -24,7 +24,7 @@ connaissance.
 
 ```
 @article{stern1988,
-  author = {Stern Eliahu and Leiser David},
+  author = {Stern, Eliahu and Leiser, David},
   title = {Levels of Spatial Knowledge and Urban Travel Modeling},
   journal = {Geographical Analysis},
   volume = {20},
@@ -32,10 +32,11 @@ connaissance.
   pages = {140-155},
   doi = {10.1111/j.1538-4632.1988.tb00172.x},
   url = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1538-4632.1988.tb00172.x},
-  eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1538-4632.1988.tb00172.x}
+  eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1538-4632.1988.tb00172.x},
+  year= {1988}
 }
 ```
 
 ```
-/home/stephane/Documents/Stage 2018/Biblio/Modeling_Spatial_Knowledge_KUIPERS_1978.pdf
+/home/stephane/Documents/Stage 2018/Biblio/Levels_of_Spatial_Knowledge_and_Urban_Travel_Modeling_STERN_1988.pdf
 ```
