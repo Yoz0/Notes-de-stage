@@ -139,3 +139,18 @@
 
 * Après avoir fait la synthèse, je me rends compte que les fiches que j'ai fait
   sont trop peu détaillées
+
+# Questions pour Pierrick et Arnaud
+
+* Quel est la taille du graphe de Rouen (ou d'autres villes qu'on considère pour
+  Escape) en terme de nombres de nœuds et d'arêtes ?
+
+* Sur quel types d'ordinateur on fera tourner Escape, et combien de temps de
+  calcul est acceptable ? Quel est la complexité maximale que doivent respecter
+  les algorithmes de plus courts chemins...
+
+* Est-ce qu'on peut simplifier le problème en considérant qu'il y a peu de
+  connaissances différentes de la ville ?
+
+* Est-ce que faire des calculs avant la simulation est envisageable ? Pour
+  calculer les différents niveaux de précisions par exemple.
