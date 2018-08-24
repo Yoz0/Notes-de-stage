@@ -174,5 +174,7 @@ A survey of modeling trends in temporal GIS & 2018-06-25 & siabato2018 \\
 The network analysis of urban streets: A dual approach & 2018-07-18 &porta2005\\
 \hline
 On a relation between graph edit distance and maximum common subgraph &
-2018-0-22 & bunke1997 \\
+2018-08-22 & bunke1997 \\
+\hline
+Survey of Graph Database Models & 2018-08-24 & angles2008 \\
 \end{tabular}
