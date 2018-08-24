@@ -16,16 +16,24 @@
 
 \date{2018-08-20}
 
+\tikzset{place/.style={draw, minimum width=2em, circle, fill=white}}
+\tikzset{rplace/.style={draw=red, minimum width=2.5em, circle}}
+\tikzset{bplace/.style={draw=blue, minimum width=2.25em, circle}}
+\tikzset{connaissance/.style={draw, rectangle, rounded corners, fill=yellow!30,
+text width=3cm, align=center}}
+\tikzset{people/.style={draw, minimum width=2em, circle, fill=blue!20}}
+
+
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
 
-Blablabla Escape, ça suit la synthèse. On va proposer des solutions, le but est
-de trouver la meilleure. En fait on propose une "solution naïve" qui nous sert
-de point de départ auquel on va proposer des améliorations. Les améliorations ne
-sont pas complètement développé le but est de montrer l'idée. Ça se trouve les
+Ça suit la synthèse. On va proposer des solutions, le but est de trouver la
+meilleure. En fait on propose une "solution naïve" qui nous sert de point de
+départ auquel on va proposer des améliorations. Les améliorations ne sont pas
+complètement développé le but est de montrer l'idée. Ça se trouve les
 améliorations ne sont pas pertinentes, ce ne sont que des propositions.
 
 \section{Solution naive}
@@ -34,17 +42,14 @@ améliorations ne sont pas pertinentes, ce ne sont que des propositions.
 
 Dans cette solution on représente l'espace avec plusieurs graphes, chacun étant
 un moyen de transport. Cela permet de montrer les modalités de transports
-différents. Les nœuds sont les endroits où les agents peuvent se
-situer, les arêtes sont les chemins qu'ils peuvent emprunter. Par exemple, sur
-la figure \ref{fig:multimodal}, un agent peut aller du nœud B au nœud D en
-empruntant le réseau piéton (en noir), ou bien en prenant le bus (en rouge),
-mais pas en prenant la voiture (en bleu).
+différents. Les nœuds sont les endroits où les agents peuvent se situer, les
+arêtes sont les chemins qu'ils peuvent emprunter. Par exemple, sur la figure
+\ref{fig:multimodal}, un agent peut aller du nœud B au nœud D en empruntant le
+réseau piéton (en noir), ou bien en prenant le bus (en rouge), mais pas en
+prenant la voiture (en bleu).
 
 \begin{figure}
-  \tikzset{place/.style={draw, minimum width=2em, circle, fill=white}}
-  \tikzset{rplace/.style={draw=red, minimum width=2.5em, circle}}
-  \tikzset{bplace/.style={draw=blue, minimum width=2.25em, circle}}
-  \begin{tikzpicture}[scale=0.75]
+  \begin{tikzpicture}
     \node[place] (A) at (0,8) {A};
     \node[place] (B) at (2,8) {B};
     \node[place] (C) at (1,6) {C};
@@ -67,7 +72,7 @@ mais pas en prenant la voiture (en bleu).
     \node[bplace] (bG) at (G) {};
     \node[bplace] (bI) at (I) {};
 
-    \draw (A) -- (B) -- (C) -- (A) ;
+    \draw (A) -- (B) -- (C) -- (A);
     \draw (D) -- (E) -- (F) -- (D);
     \draw (G) -- (H);
     \draw (B) -- (D) -- (C) -- (G) (H) -- (F) -- (I) -- (E);
@@ -89,13 +94,41 @@ mais pas en prenant la voiture (en bleu).
 
 Ici, chaque agent a sa propre copie de l'espace en mémoire. La copie est
 l'espace tel que connais l'agent, elle peut être partielle, inexacte et même
-fausse.
+fausse. La figure \ref{fig:connaissance} donne un exemple de ce phénomène.
 
 Lors de la mise à jour de la connaissance de l'agent, il peut être utile de
 savoir d'où viennent les informations que l'agent possède déjà, pour pouvoir les
 comparer avec les nouvelles informations. On associe à chaque nœud et arête du
 graphe la source d'où vient cette information, ainsi que la date à l'information
 a été mise à jour.
+
+\begin{figure}
+  \begin{tikzpicture}[scale=1.25]
+    \newcommand{\places}{
+      \node[place] (A) at (0,0) {A};
+      \node[place] (B) at (0,1) {B};
+      \node[place] (C) at (1, 0.5) {C};
+    }
+    \begin{scope}
+      \places
+      \draw (A) -- (B) -- (C) -- (A);
+    \end{scope}
+
+    \begin{scope}[shift={(3,0)}]
+      \places
+      \draw (A) -- (B) -- (C);
+    \end{scope}
+
+    \begin{scope}[shift={(7,0)}]
+      \places
+      \node[place] (D) at (-1, 0.5) {D};
+      \draw (A) -- (C) -- (B) -- (D);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Différentes connaissances du même espace}
+  \centering
+  \label{fig:connaissance}
+\end{figure}
 
   \subsection{Commentaire}
 
@@ -133,6 +166,7 @@ différent.
 On remplace les graphes par leurs duaux ou par les graphes des rues comme fait
 \cite{porta2005}.
 \comment{Illustration ? La mienne ou celle de porta ?}
+
   \subsection{Commentaire}
 
 Le but de cette amélioration est de diminuer le nombre d'arêtes et de nœuds dans
@@ -152,8 +186,39 @@ différence entre deux graphes, et pour reconstruire le graphe de connaissance.
 
 \section{Mise en commun de la connaissance}
 
-On définit un petit nombre de différentes connaissance de l'espace, on les
-stockent. Pour chaque agent on indique quelle connaissance il possède.
+On identifie différentes connaissance de l'espace, on les
+stock. Pour chaque agent on indique quelle connaissance il possède.
+
+Cette solution est beaucoup plus efficace si il y a peu de différentes
+connaissances de l'espace, c'est-à-dire si beaucoup d'agents ont la même
+connaissances.
+
+\begin{figure}
+  \begin{tikzpicture}[scale=1]
+    \node[connaissance] (A) at (0,0) {Espace réel};
+    \node[connaissance] (B) at (5,0) {Connaissance espace selon google maps};
+    \node[connaissance] (C) at (10,0) {Connaissance espace version 2};
+
+    \node[people] (p1) at (0,-3) {U};
+    \node[people] (p2) at (2,-3) {V};
+    \node[people] (p3) at (4,-3) {W};
+    \node[people] (p4) at (6,-3) {X};
+    \node[people] (p5) at (8,-3) {Y};
+    \node[people] (p6) at (10,-3) {Z};
+
+    \draw (p1) to (A);
+    \draw (p2) to (C);
+    \draw (p3) to (B);
+    \draw (p4) to (A);
+    \draw (p5) to (C);
+    \draw (p6) to (A);
+  \end{tikzpicture}
+\end{figure}
+
+  \subsection{Arbre de sous-graphes}
+
+Pour aller plus loin on peut imaginer un arbre de sous-graphes commun pour ne
+stocker que les parties différentes.
 
 \section{Granularité}
 
