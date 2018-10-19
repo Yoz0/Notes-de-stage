@@ -142,15 +142,85 @@
 
 # Questions pour Pierrick et Arnaud
 
-* Quel est la taille du graphe de Rouen (ou d'autres villes qu'on considère pour
-  Escape) en terme de nombres de nœuds et d'arêtes ?
+* Quelle est la taille du graphe de Rouen (ou d'autres villes qu'on considère
+  pour Escape) en terme de nombres de nœuds et d'arêtes ? 18 000/90 000 nœuds
+  112000 arêtes / 36 000 nœuds
 
 * Sur quel types d'ordinateur on fera tourner Escape, et combien de temps de
   calcul est acceptable ? Quel est la complexité maximale que doivent respecter
-  les algorithmes de plus courts chemins...
+  les algorithmes de plus courts chemins... 30 minutes sur le preprocess
+  C'est bon on a le temps e prepross
 
 * Est-ce qu'on peut simplifier le problème en considérant qu'il y a peu de
-  connaissances différentes de la ville ?
+  connaissances différentes de la ville ? C'est à dire que les beaucoup d'agents
+  ont la même connaissance. Réponse : Oui au départ, mais les agents découvre
+  des choses.
 
 * Est-ce que faire des calculs avant la simulation est envisageable ? Pour
-  calculer les différents niveaux de précisions par exemple.
+  calculer les différents niveaux de précisions par exemple. Ou bien pour
+  calculer l'arbre des versions de connaissances.
+
+* Combien de catégories d'agents (version de connaissances) Réponse chiffré ?
+
+# Préparation pour la réunion avec Géraldine
+
+* Parlez de la synthèse, j'ai pas réussi à terminer comme je le voudrais. Il
+  faut que je le termine !!!
+
+* Articles que j'ai lu depuis : porta2005 ; bunke1997 ; angles2008. Je dois
+  parler de la graph edit distance. Dire que c'est utilisé dans la recherche de
+  graph similaire, Genre de l'IA et tout. Mais j'aimerais bien creuser un peu ça
+  pour voir si je trouve un truc à propos de la façon de modéliser la différence
+  entre deux graphes.
+
+* Parler de la discussion avec Pierrick et Arnaud
+
+* Parler de la modélisation. De la forme, des schémas. De la difficultés de
+  représenter la différence entre des graphes. Est-ce qu'elle a des idées sur
+  comment faire ça ?
+
+* J'ai passé beaucoup de temps à lire des abstract à propos de GED et de
+  différence de graphes, sans grand succès c'est assez frustrant. Est-ce que je
+  continue de chercher ?
+
+* Je suis un peu perdu je sais pas trop comment continuer la synthèse. Je
+  cherche de la literature parce que je sens qu'il me manque quelque chose.
+
+# 2018-09-05
+
+* Il faut parler avec benoit de GED
+
+* Se bouger sur la modélisation
+
+* In-my-dream-feature : Pouvoir modéliser des agents qui se perdent,
+  c'est-à-dire qu'ils ne savent pas où ils sont.
+
+* Ajouter arbre [x] ; ajouter individus connaissances ; comment utiliser arbre ;
+  modifications ; étapes ; prepross
+
+* Il faut bien expliquer que je stocke QUE la différence entre les
+  connaissances.
+
+* Demander à Eric combien il y a de versions de connaissances d'agents ? Sa
+  stagiaire a travaillé la dessus. Nope
+
+# 2018-09-19
+
+* Formaliser est plus difficile que ce que je pensais. Je sais pas trop quoi
+  faire, je suis un peu perdu.
+
+* https://www.zotero.org/groups/2085331/anrescape/items/collectionKey/DMNJHDHZ
+
+* https://v2.overleaf.com/17029172nqxnxxxpvmsr#
+
+* Quels sont les algorithmes à écrire ?
+
+# 2018-10-03
+
+* Dans la formalisation je dois avoir une approche plus descriptive que
+  processus-focus.
+
+* Sans-cycle et connexe pour décrire l'arbre ça va pas ?
+
+* J'ai bcp de mal avec opérations. Comment on les formalisent ?
+
