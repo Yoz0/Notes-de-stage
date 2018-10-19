@@ -8,7 +8,7 @@
 \usepackage{tikz}
 \usepackage{nameref}
 \usepackage{tabularx}
-% \usepackage{comments}
+ \usepackage{comments}
 
 % \newcommand{\comment}[1]{}
 
@@ -28,43 +28,44 @@
 
 Escape est un projet visant à définir des outils informatiques pour modéliser
 les évacuations de villes en cas de crise (comme l'explosion d'une usine, ou
-bien la rupture d'une digue). Ces situations de crises peuvent modifier l'espace
-de la ville, comme empêcher l'accès de certaines zone aux piétons, ou bien
+bien la rupture d'une digue). Ces situations de crise peuvent modifier l'espace
+de la ville, comme empêcher l'accès de certaines zones aux piétons, ou bien
 couper un pont. Ceci gêne l'évacuation de la population, et doit être pris en
 compte dans la modélisation.
 
 L'objectif d'Escape est de pouvoir valider des plans d'évacuation comme un Plan
 Communal de Sauvegarde (PCS). Un PCS est un document décrivant l'organisation à
 adopter face aux risques de désastre naturel, industriel ou sanitaire. Il est
-écrit par des experts avec l'équipe de la mairie. Ils y indique tout ce qu'il
+écrit par des experts avec l'équipe de la mairie. Il y indique tout ce qu'il
 faut faire pour informer la population sur les risques, l'alerter en cas de
 crise, la guider lors de l'évacuation, et l'assister si besoin est. Pour
 valider un PCS, Escape doit vérifier la faisabilité et l'efficacité des
-dispositions proposés dans le plan.
+dispositions proposées dans le plan.
 
 Escape s'intéresse principalement à tester les dispositions prises lors de la
 crise. Escape cherche entre autres à estimer le temps qu'il faudrait pour que la
-population évacue la ville dans différent scénarios et selon les dispositions
+population évacue la ville dans différents scénarios et selon les dispositions
 prises dans le PCS. L'équipe de la mairie peut ainsi tester différentes actions,
 les évaluer et les comparer, pour faire un meilleur PCS.
 
 Pour simuler l'évacuation de la ville, la méthode mise en œuvre est un système
 multi-agents. Un système multi-agents est un programme informatique où l'on
-simule plusieurs agents autonomes. Un agent est une entité situé dans un
+simule plusieurs agents autonomes. Un agent est une entité située dans un
 environnement, auquel on associe un comportement le rendant capable de prendre
 des décisions et d'interagir avec son environnement. Dans Escape, les agents
 sont les civils (piétons ou automobilistes) et les agents de gestion de crise.
 
 Dans les systèmes multi-agents, les agents évoluent sur une structure
-informatique modélisant l'espace. Il existe plusieurs types de structures pour
-modéliser l'espace. En effet, différentes structures de modélisations permettent
-de simuler les différentes caractéristiques de l'espace.
+informatique modélisant l'espace.\comment{Pas toujours, il existe des SMA sans
+espace associé} Il existe plusieurs types de structures pour modéliser l'espace.
+En effet, différentes structures de modélisations permettent de simuler les
+différentes caractéristiques de l'espace.
 
 Pour que les agents prennent des décisions, nous devons leur fournir des
 connaissances et un algorithme qui, avec ces connaissances, indique la décision
 à prendre. Nous nous intéressons ici à la structure modélisant la connaissance
 de l'espace. On appelle connaissance de l'espace toutes les informations
-relatives à l'environnement qu'un individu a à sa disposition. Il y a une grande
+relatives à l'environnement qu'a un individu à sa disposition. Il y a une grande
 diversité de connaissance, et des individus avec des connaissances différentes
 font des choix différents. Ainsi la modélisation se doit de pouvoir représenter
 cette diversité.
@@ -115,7 +116,7 @@ que les individus vont évacuer la ville.
 La connaissance de l'espace est l'ensemble des informations qu'a un individu à
 propos des modes de transport disponibles dans sa ville et leurs modalités. On y
 inclut l'ensemble des rues qu'il connaît, les distances, les routes, les lignes
-des transports en commun, leurs horaires etc.
+des transports en commun, leurs horaires, etc.
 
 Les habitants d'une ville n'ont pas la même connaissance de l'espace. Par
 exemple, certaines personnes connaissent des rues ou des raccourcis que d'autres
@@ -189,11 +190,11 @@ ville de la même façon, mais leur accès aux moyens de transports de la ville 
 différent.
 
 De plus, les différents réseaux peuvent être affectés différemment par les
-aléas. Une rue peut, par exemple, ne pas être praticable pour les automobiliste
+aléas. Une rue peut, par exemple, ne pas être praticable pour les automobilistes
 à cause de la pluie, mais être traversable par les piétons.
 
-Finalement, il y a deux concepts à modéliser : l'espace, autrement dit
-l'ensemble des modes de transports de la ville\,; et la connaissance de cet
+Finalement, il y a deux concepts à modéliser~: l'espace, autrement dit
+l'ensemble des modes de transports de la ville~; et la connaissance de cet
 espace, c'est-à-dire toutes les informations qu'ont les individus sur cet
 espace. Cependant, lors d'une crise naturelle ou industrielle, l'espace est
 modifié par les aléas et les individus prennent progressivement connaissance
@@ -201,7 +202,7 @@ de la modification de cet espace, donc leurs connaissances sont modifiées. Les
 modifications de l'espace et des connaissances sont dynamiques d'où la nécessité
 de s'intéresser à l'évolution temporelle de l'espace et des connaissances.
 
-\subsection{Évolution temporelle}
+  \subsection{Évolution temporelle}
 
 L'espace de la ville peut être amené à se modifier au cours de la crise. Une
 modification de cet espace est tout changement affectant le déplacement des
@@ -222,7 +223,7 @@ pas immédiatement au courant de cette modification. Pour l'intégrer à leur
 connaissance, il faut soit qu'ils la voient, soit que l'information leur
 parvienne par une source quelconque.
 
-La multitudes des sources d'information disponibles et leur non-harmonisation
+La multitude des sources d'information disponibles et leur non-harmonisation
 provoque des conflits. En fait les sources d'information ne se mettent pas
 toutes à jour automatiquement et les individus n'ont pas accès à toutes les
 sources d'informations en permanence, cela provoque des situations où certains
@@ -238,72 +239,77 @@ leurs décisions sont prises à partir des informations qu'ils possèdent, leur
 différence de connaissances entraine une différence de décisions. Cependant,
 comme ils sont dans le même groupe, ils doivent se mettre d'accord pour prendre
 la même décision. De fait, l'un des individus doit convaincre les autres que sa
-décision est la meilleure car sa connaissance est plus proche de la réalité, et
-donc que sa décision est la meilleure.
+décision est la meilleure car sa connaissance est plus proche de la réalité.
 
 Ces évolutions temporelles amènent les individus à devoir sans cesse réévaluer
-leurs choix, puisqu'un chemin autrefois jugé optimal doit être revu si il est
+leurs choix, puisqu'un chemin autrefois jugé optimal doit être revu s'il est
 affecté par l'aléa. De plus les individus peuvent apprendre de nouvelles
 informations, ce qui les obligent à réévaluer leurs choix à la lumière de
 celles-ci. Pour modéliser les prises de décisions des individus, on doit faire
-un certains nombre de calculs. La fréquence des modifications de l'espace et des
+un certain nombre de calculs. La fréquence des modifications de l'espace et des
 connaissances de l'espace pose la question de la complexité à prendre en compte
 pour résoudre le problème.
 
-\subsection{Contraintes techniques}
+  \subsection{Contraintes techniques}
 
 La ville est un espace grand et complexe, et le nombre d'agents est gigantesque.
 Pour se donner un ordre d'idée, à Rouen on compte 110 169 habitants sur une
 superficie de 21 km$^2$. De fait il faut faire très attention à la taille
-mémoire que va prendre la modélisation.
+mémoire que va prendre la modélisation.\comment{On veut stocker un graphe avec
+toutes les rues et les intersections}
 
 De plus, les agents appliquent souvent des algorithmes particulièrement long sur
 des structures de données complexe tel que la recherche de plus court chemins.
 Il faut veiller à ce que la modélisation choisie permette de faire tourner ces
 algorithmes en un temps raisonnable.
 
-\subsection{Conclusion}
+  \subsection{Conclusion}
 
-Escape est une application faite pour simuler des évacuation de ville à l'aide
+Escape est une application faite pour simuler des évacuations de ville à l'aide
 d'un système multi agents. On veut modéliser l'espace et l'ensemble des
 informations que peut avoir un individu à propos de cet espace. Dans le but de
 faire une modélisation fidèle nous avons décrit les caractéristiques de l'espace
 que nous voulons conserver. Nous avons évoqué la complexité des réseaux, des
 déplacements multimodaux, les différences d'informations qu'ont les individus,
 et de l'évolution temporelle de l'espace et des connaissances. Un point à ne pas
-négliger pour produire une modélisation fidèle est la complexité du problème. De
-fait nos capacités de calculs et d'espace mémoire ne sont pas infinies. Dans la
+négliger pour produire une modélisation fidèle est la complexité du problème. En
+effet, nos capacités de calculs et d'espace mémoire ne sont pas infinies. Dans la
 prochaine section nous allons faire un état de l'art des structures
 informatiques pour modéliser l'espace et la connaissance de l'espace.
 
 \section{État de l'art}
 \label{etat}
 
-Il existe deux catégories de modélisations de l'espace : les modélisations en
-matrice et les modélisations objets. La modélisation en matrice est utilisé
-notamment dans \cite{batty1999} où l'on découpe l'espace entier en portions, et
-chaque portion de l'espace est enrichie d'informations. Les modélisations en
-matrices sont principalement utilisées pour modéliser les étendues, comme les
-habitations, les lacs, les reliefs... Par opposition, les modélisations objets
-où l'on considère les objets (e.g., les routes, immeubles, individus) qui
-constituent l'espace, sont utilisées pour modéliser les relations entre les
-objets dans l'espace. En particulier, il y a les modélisations en graphes, qui
-sont des agrégats de nœuds reliés par des arête. Il y a pleins de façon
-d'utiliser les graphes pour modéliser l'espace, comme le montre \cite{dale2010}.
+Il existe deux catégories de modélisations de l'espace les modélisations en
+matrice (i.e. raster) et les modélisations objets (i.e. vecteur). La
+modélisation en matrice est utilisé notamment dans \cite{batty1999} où l'on
+découpe l'espace entier en portions, et chaque portion de l'espace est enrichie
+d'informations. Les modélisations en matrices sont principalement utilisées pour
+modéliser les étendues, comme les habitations, les lacs, les reliefs... Par
+opposition, les modélisations objets où l'on considère les objets (e.g., les
+routes, immeubles, individus) qui constituent l'espace, sont utilisées pour
+modéliser les relations entre les objets dans l'espace.
 
-Avec le concept de Region Connection Calculus (RCC-8) \cite{randell1992} donne
-les bases de formalisations des définitions pour les relations de topologies (se
-touchent, se superposent, à l'intérieur de...). Un exemple de modélisation de
-l'espace sont les \emph{maptree} proposés par \cite{worboys2012}. Ils se
+Dans ces modélisations objets de l'espace on veut modéliser les relations
+entre les objets. Le concept de Region Connection Calculus
+(RCC-8) \cite{randell1992} donne les bases formelles des définitions
+des relations topologiques (se touchent, se superposent, à l'intérieur
+de...) et peut nous être utile.
+
+Pour les modélisations objets on utilise souvent les graphes, où les objets sont
+des nœuds et les relations entre ces objets sont représentés par des arêtes. Il y
+a pleins de façon d'utiliser les graphes pour modéliser l'espace, comme le
+montre \cite{dale2010}. Un autre exemple de modélisation de l'espace par des
+graphes sont les \emph{maptree} proposés par \cite{worboys2012}. Ils se
 focalisent sur la modélisation des frontières.
 
 La façon classique de modéliser le réseau de rues est de considérer que les
-intersections des rues sont des nœuds et relier chaque nœud si il y a un tronçon
+intersections des rues sont des nœuds et relier chaque nœud s'il y a un tronçon
 de rue entre les deux. Comme le montre \cite{porta2005}, on peut aussi prendre
 le graphe dual et avoir chaque tronçon de rue comme nœud et deux nœuds sont
 reliés si les deux tronçons se croisent. Ou bien encore chaque rue est un nœud
 et relier deux nœuds si les rues s'intersectent, voir la figure \ref{fig:dual}.
-On peut faire de même pour le réseau routier ou celui des transport en commun.
+On peut faire de même pour le réseau routier ou celui des transports en commun.
 
 \begin{figure}
   \centering
@@ -356,17 +362,16 @@ On peut faire de même pour le réseau routier ou celui des transport en commun.
   \label{fig:dual}
 \end{figure}
 
-La granularité, c'est-à-dire la modélisation de l'espace selon plusieurs degré
-de précisions, est une piste à explorer pour notre problème. Cette technique est
-particulièrement utile pour représenter simplement un espace qui a beaucoup de
-détails. En effet, il est parfois plus intéressant de  réduire le niveau de
-détails d'une modélisation pour réduire la complexité des algorithmes. On pense
-par exemple à faire des calculs de plus de court chemins sur une carte générale,
-pour avoir une idée du chemin global à prendre. On donne un exemple de réseau à
-plusieurs niveaux de précisions sur la figure \ref{fig:generalisation}.
-\cite{stell1998} donne un outil formel d'organisation des modélisations sur
-plusieurs degrés de précisions sémantiques et géographiques, les
-\emph{stratified map space}.
+Notre espace a beaucoup de détails, il peut être intéressant de réduire le
+niveau de détails d'une modélisation pour réduire la complexité des algorithmes.
+On pense par exemple à faire des calculs de plus de court chemins sur une carte
+générale, pour avoir une idée du chemin global à prendre. La granularité,
+c'est-à-dire la modélisation de l'espace selon plusieurs degrés de précisions,
+est l'outil idéal pour diminuer la complexité du graphe sans perdre
+d'informations. On donne un exemple de réseau à plusieurs niveaux de précisions
+sur la figure \ref{fig:generalisation}. \cite{stell1998} donne un outil formel
+d'organisation des modélisations sur plusieurs degrés de précisions sémantiques
+et géographiques, les \emph{stratified map space}.
 
 \begin{figure}
   \tikzset{place/.style={draw, circle, fill=white}}
@@ -405,19 +410,19 @@ plusieurs degrés de précisions sémantiques et géographiques, les
 
 Maintenant que nous avons évoqué différentes modélisations de l'espace, nous
 nous intéressons à la façon d'intégrer les différentes modalités de transports à
-la modélisations. \cite{jguirim2015} propose d'associer à chaque agent un profil
+la modélisation. \cite{jguirim2015} propose d'associer à chaque agent un profil
 indiquant les modalités de transports qu'ils peuvent emprunter. Cette solution
 nous semble adéquate, puisqu'elle permet de modéliser les comportements qu'on
 observe. Elle a aussi l'avantage de ne pas être complexe, ni d'exiger une grande
-place en mémoire.
+place en mémoire.\comment{Il faudrait argumenter ce point}
 
-En ce qui concerne la modélisations des connaissances, il existe des études sur
+En ce qui concerne la modélisation des connaissances, il existe des études sur
 les niveaux de connaissances, comme dans \cite{stern1988} qui fait une étude
 pour mesurer le niveau de connaissance de la ville qu'ont les conducteurs
 professionnels par rapport aux conducteurs amateurs. Il y a aussi
 \cite{quinn2018} qui s'intéresse au rapport qu'ont les gens aux risques naturels
 près de chez eux, en fonction de leur attachement à leur quartier. Cela ne
-correspond pas à ce qu'on veut faire, ce sont des études sur le comportements
+correspond pas à ce qu'on veut faire, ce sont des études sur les comportements
 des individus plutôt que sur la modélisation de ces comportement. Cependant ils
 pourraient être utilisés pour parfaire notre modèle des individus.
 \cite{kuipers1978} a une approche plus informatique, et propose un modèle
@@ -426,52 +431,57 @@ que les gens retiennent surtout les chemins entre leurs points d'intérêts et l
 position relative de certains lieux par rapport à des points de références (un
 monument visible de loin par exemple).
 
-Maintenant que l'on voit comment modéliser la connaissance d'un individu, on
-voudrait modéliser celle de plusieurs individus. Malheureusement, il semble
-qu'il y a peu d'articles détaillant la façon dont on peut modéliser la diversité
-des connaissances de l'espace qu'ont les individus. Idéalement on aimerait une
-façon de modéliser la différence entre le graphe représentant l'espace et celui
-représentant la connaissance qu'a un individu de cet espace. Comme les
-individus peuvent avoir une partie de connaissance en commun il faudrait pouvoir
-la modéliser.
+Pour l'instant nous nous sommes penchés sur les modélisations de la connaissance
+d'un individu seul. Cependant dans notre simulation on veut modéliser la
+connaissance de plusieurs individus. Malheureusement, il semble qu'il y a peu
+d'articles détaillant la façon dont on peut modéliser la diversité des
+connaissances de l'espace qu'ont les individus. Comme les individus peuvent
+avoir une partie de connaissance en commun il faudrait pouvoir la modéliser.
+Idéalement on aimerait une façon de modéliser la différence entre le graphe
+représentant l'espace et celui représentant la connaissance qu'a un individu de
+cet espace.
 
-Nous allons maintenant introduire la dimension temporelle dans notre modèle.
-Malgré les différentes façon de décrire le temps, une semble faire consensus,
-celle développée par \cite{allen1985}. Il définit une algèbre avec les
-intervalles de temps comme objet de base et avec ceux-ci définit des relations
-et tout ce qu'il faut pour avoir une algèbre temporelle complète. Il y théorise
-le principe d'instants. Les instants étant ce qui constitue le début et la fin
-des intervalles.
+La connaissance de l'espace est amenée à évoluer dans le temps, nous allons voir
+comment la dimension temporelle peut s'introduire dans notre modèle. Malgré les
+différentes façons de décrire le temps, une semble faire consensus, celle
+développée par \cite{allen1985}. Il y théorise le principe d'instants. Les
+instants temporels étant ce qui constitue le début et la fin des intervalles. Il
+définit une algèbre avec les intervalles de temps comme objet de base et avec
+ceux-ci définit des relations et tout ce qu'il faut pour avoir une algèbre
+temporelle complète.
 
 Lorsqu'on parle de dynamique spatio-temporelle on voit souvent des articles qui
 s'intéressent aux processus modifiant l'espace. Certains, comme\linebreak
-\cite{claramunt1995} décrivent les processus et évènements comme des entités.
-Ce sont des \emph{Temporal Geographic Information Systems}(T-GIS),
+\cite{claramunt1995} décrivent les processus et évènements comme des entités. Ce
+sont des \emph{Temporal Geographic Information Systems}(T-GIS),
 \cite{siabato2018} fait une étude de tous travaux fait sur les T-GIS. D'autres
 comme \cite{delmondo2011} et \cite{costes2015} se penchent sur la représentation
-des relations entre les objets dans des espaces et des instants différents.
+des relations entre les objets dans des espaces et des instants potentiellement
+différents.
 
+\comment{Il faut reformuler cette transition}
 Mais ces articles ne parlent pas de la complexités en place et en temps des
 modélisations qu'ils proposent. On se tourne alors vers les \emph{multi level
 overlay graphs} de \cite{holzer2009}. Le but de ces constructions est de
 diminuer la complexité des algorithmes du plus court chemin sur un graphe en
 faisant une partie des calculs en avance. L'idée est de sélectionner les nœuds
 les plus importants pour le calcul de chemins, puis on relie ces nœuds avec une
-méta-arète, représentant le plus court chemins entre les nœuds. Cela permet
+méta-arète, représentant le plus court chemin entre les nœuds. Cela permet
 ensuite de retrouver le plus court chemin entre tous les nœuds plus rapidement.
 Comme la simulation multi-agents va souvent demander aux agents de décider où
 aller, refaire tout le calcul de plus court chemin à chaque fois va demander
-beaucoup de puissance de calcul. Dans notre cas, le modèle est voué à évoluer
-au cours de la simulation, de fait \cite{bruera2008} qui rend ces \emph{overlay
+beaucoup de puissance de calcul. Dans notre cas, le modèle est voué à évoluer au
+cours de la simulation, de fait \cite{bruera2008} qui rend ces \emph{overlay
 graphs} dynamiques, est particulièrement intéressant.
 
-On a vu plusieurs modélisations de l'espace, RCC-8 pour les relations
-topologiques, les graphes, les maptree, les graphes duaux. Les modélisations qui
-semble permettre de réduire la complexité de l'algorithme du plus court chemin
-paraissent les plus pertinentes, c'est-à-dire les \emph{multi level overlay}
-ainsi que les graphes duaux. Cependant nous n'avons pas trouvé de littérature
-traitant de la façon de modéliser les différences des connaissances des
-individus. Cela constitue notre problématique majeur.
+On a vu plusieurs outils pour modéliser l'espace RCC-8 pour formaliser les
+relations topologiques, les graphes pour modéliser les relations entre les
+objets. On a aussi vu des modélisations de l'espace les maptree, les graphes
+duaux. Les modélisations qui permettent de réduire la complexité de l'algorithme
+du plus court chemin paraissent les plus pertinentes, c'est-à-dire les
+\emph{multi level overlay} ainsi que les graphes duaux. Cependant nous n'avons
+pas trouvé de littérature traitant de la façon de modéliser les différences des
+connaissances des individus. Cela constitue notre problématique majeur.
 
 \bibliographystyle{apalike} \bibliography{biblio.bib}
 
