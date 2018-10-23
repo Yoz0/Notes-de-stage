@@ -12,8 +12,8 @@
 \usepackage{braket}
 \usepackage[colorlinks]{hyperref}
 \usepackage[colorinlistoftodos]{todonotes}
-% \usepackage{comments}
-\newcommand{\comment}{}
+\usepackage{comments}
+% \newcommand{\comment}[1]{}
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage[]{algpseudocode}
@@ -34,6 +34,7 @@ text width=3cm, align=center}}
 
 \DeclareMathOperator{\poids}{GED}
 \DeclareMathOperator{\diff}{diff}
+\DeclareMathOperator{\dist}{distance}
 \DeclareMathOperator{\connait}{récupererConn}
 \DeclareMathOperator{\applique}{appliqueDiff}
 \DeclareMathOperator{\parent}{parent}
@@ -123,7 +124,7 @@ arêtes sont les chemins qu'ils peuvent emprunter. Par exemple, sur la figure
 réseau piéton (en noir), ou bien en prenant le bus (en rouge), mais pas en
 prenant la voiture (en bleu).
 
-\begin{figure}
+\begin{figure}%{{{ multimodal
   \begin{tikzpicture}
     \node[place] (A) at (0,8) {A};
     \node[place] (B) at (2,8) {B};
@@ -157,7 +158,7 @@ prenant la voiture (en bleu).
   \caption{Un exemple de graphe mutli-modal}
   \label{fig:multimodal}
   \centering
-\end{figure}
+\end{figure}%}}}
 
   \subsection{Connaissance de l'espace}
 
@@ -179,6 +180,7 @@ comparer avec les nouvelles informations. On associe à chaque nœud et arête d
 graphe la source d'où vient cette information, ainsi que la date à laquelle
 cette information a été mise à jour.
 
+% {{{ fig:connaissance
 \newcommand{\ABC}{
   \node[place] (A) at (0,2) {A};
   \node[place] (B) at (2,2) {B};
@@ -213,6 +215,7 @@ cette information a été mise à jour.
   \label{fig:connaissance}
   \centering
 \end{figure}
+% }}}
 
   \subsection{Limitations}
 
@@ -258,12 +261,16 @@ exécuter.
 
     \subsubsection{Principe}
 
-On remplace les graphes par le graphe des rues comme fait
-\cite{porta2005}. Un graphe des rues est un graphe ou chaque rue est un nœud et
-on relie deux nœuds si les rues qu'ils représentent s'intersectent. À l'origine
+On remplace les graphes par le graphe des rues comme fait \cite{porta2005}. Un
+graphe des rues est un graphe où chaque rue est un nœud et où deux nœuds sont
+reliés par une arêtes si les rues qu'ils représentent s'intersectent.
 \cite{porta2005} utilise cette méthode pour étudier les graphes des villes d'un
 point de vue théorique, mais cela semble pouvoir être utilisé pour optimiser les
 calculs de plus court chemin.
+
+\comment{Expliquer + en détail}
+
+En effet, comme il y a moins de rues blabla...
 
     \subsubsection{Gain}
 
@@ -324,6 +331,7 @@ Dans ces trois améliorations on ne fait pas de modifications sur le graphe de
 l'espace, on considère qu'on modélise l'espace par un graphe tout de même.
 
   \subsection{Mise en commun de la connaissance}
+  \label{sec:miseEnCommun}
 
     \subsubsection{Principe}
 
@@ -331,7 +339,7 @@ On identifie les différentes connaissances de l'espace, on les stocke. Pour
 chaque agent on indique quelle connaissance il possède. On donne un exemple sur
 la figure \ref{fig:miseEnCommun}.
 
-\begin{figure}
+\begin{figure}%{{{fig:miseEnCommun
   \begin{tikzpicture}[scale=1]
     \node[connaissance] (A) at (0,0) {Espace réel};
     \node[connaissance] (B) at (5,0) {Connaissance espace selon google maps};
@@ -354,7 +362,7 @@ la figure \ref{fig:miseEnCommun}.
   \caption{Plusieurs individus (les lettres de U à Z) ont les mêmes
   connaissances.}
   \label{fig:miseEnCommun}
-\end{figure}
+\end{figure}%}}}
 
     \subsubsection{Gain}
 
@@ -369,6 +377,7 @@ même connaissance.
 différentes. Par contre ça n'a pas de vraiment de désavantage.
 
   \subsection{Stockage de la différence des connaissances}
+  \label{sec:difference}
 
     \subsubsection{Principe}
 
@@ -377,7 +386,7 @@ chaque agent, on calcule la différence entre sa connaissance et l'espace réel,
 puis on ne stocke que les nœuds et arêtes différents, comme montré sur la figure
 \ref{fig:difference}.
 
-\begin{figure}
+\begin{figure}%{{{fig:difference
   \noindent\makebox[\textwidth]{
   \begin{tikzpicture}
     \begin{scope}
@@ -412,7 +421,7 @@ puis on ne stocke que les nœuds et arêtes différents, comme montré sur la fi
   \caption{Exemple de calcul de la différence entre la connaissance et la
   réalité}
   \label{fig:difference}
-\end{figure}
+\end{figure}%}}}
 
 Le point important est de trouver la façon la plus optimale pour calculer la
 différence entre deux graphes, et pour reconstruire le graphe de connaissance,
@@ -431,7 +440,6 @@ graphe à un autre, les opérations qu'on autorise sont :
   \item Enlever un nœud s'il n'a plus d'arêtes relié à lui
   \item Ajouter une arête entre deux nœuds existants
   \item Enlever une arête entre deux nœuds existants
-  % \item Changer le poids d'une arête
 \end{itemize}
 
 Dans la suite on va considérer que les poids des arêtes sont tous de 1, et
@@ -453,39 +461,45 @@ grande, cela ne diminue pas beaucoup (voir pas) la place.
 Il faut réadapter l'algorithme de Dijkstra mais à vu de nez ça ne doit pas être
 trop compliqué.
 
-  \subsection{Arbre des versions de connaissances}
+  \subsection{Arbre des variations de connaissances}
 
     \subsubsection{Principe}
 
-Le but est de mettre les différentes connaissances dans un arbre pour avoir le
-minimum de redondance dans notre base de donnés. Dans la suite, on appellera
-\emph{une version de connaissance}, un graphe représentant l'espace tel que le
-connait un agent (que l'on appelait précédemment connaissance de l'espace). Dans
-le cadre d'une simulation multi-agents, on connait le nombre de connaissances
-différentes. Contrairement au monde réel où tous les individus ont tous une
-connaissance de l'espace différente, on considère que dans notre cas le nombre
-de versions de connaissances différentes est relativement bas. Pour une question
-de simplification, nous allons considérer qu'on utilise la représentation de
+On va maintenant décrire une structure qui centralise les différentes
+connaissances des agents (comme dans la section \ref{sec:miseEnCommun}), tout en
+ne stockant que la différence entre les graphes (comme dans la section
+\ref{sec:difference}). Cette amélioration est une combination des deux
+propositions précédentes, avec des ajouts propres aussi. Le but est de mettre
+les différentes connaissances dans une structure faite pour avoir le minimum de
+redondance dans notre base de donnés. On appelle cette structure \gls{avac}.
+
+Dans la suite, on appellera \emph{une version de connaissance}, un graphe
+représentant l'espace tel que le connait un agent (que l'on appelait
+précédemment connaissance de l'espace). Contrairement au monde réel où tous les
+individus ont tous une connaissance de l'espace différente, on considère que
+dans notre contexte de simulation multi-agents le nombre de versions de
+connaissances différentes est relativement bas. Aussi pour une question de
+simplification, nous allons considérer qu'on utilise la représentation de
 l'espace décrite dans la section \ref{sec:naive} (i.e., les nœuds représentent
 des intersections de rues, et les arêtes représentent des tronçons de rues). On
-peut réadapter ce qui suit avec d'autres modélisations de l'espace.
+peut cependant réadapter ce qui suit avec d'autres modélisations de l'espace.
 
-L'idée est de commencer par faire un méta graphe où les nœuds représentent les
-versions de connaissances, et on pondère les arêtes avec le nombre d'opérations
-nécessaires pour passer d'un graphe à l'autre (voir figure
+Pour construire l'\gls{avac}, on commence par faire un méta graphe où les nœuds
+représentent les versions de connaissances, et on pondère les arêtes avec le
+nombre d'opérations nécessaires pour passer d'un graphe à l'autre (voir figure
 \ref{fig:grapheConnaissance}). Ensuite on cherche l'arbre recouvrant minimal,
 qu'on nomme \gls{avec} (voir les arêtes en rouge sur la figure
 \ref{fig:grapheConnaissance} et l'arbre reproduit sur la figure
 \ref{fig:arbreConnaissance}). Enfin à partir de l'\gls{avec}, on construit
 l'\gls{avac}, dans lequel chaque nœud ne stocke que les opérations nécessaires
-pour construire la connaissance partant de la connaissance présente dans le nœud
+pour construire la connaissance du nœud, en partant de la connaissance du nœud
 parent (voir la figure \ref{fig:arbreModifConnaissance}).
 
 Une fois que l'\gls{avac} est construit on va initialiser nos agents en
-indiquant dans l'agent quelle version de connaissance il possède.
+indiquant dans chaque agent quelle version de connaissance il possède.
 
-Ensuite, on lance la simulation. Si, au cours de la simulation la connaissance
-de l'agent évolue, on a deux possibilités:
+Ensuite, on lance la simulation.\comment{Nul} Si, au cours de la simulation la
+connaissance de l'agent évolue, on a deux possibilités:
 
 \begin{itemize}
 
@@ -506,7 +520,7 @@ au cours de la simulation (si tous les individus rattachés à une connaissance
 changent de connaissance). Dans ce cas on peut envisager d'enlever la
 connaissance de l'arbre, tout en gardant la structure globale.
 
-\begin{figure}
+\begin{figure}%{{{fig:grapheConnaissance
   \begin{tikzpicture}
     \begin{scope}[shift={(5, 5)}]
       \node[red, bigplace] (es) at (0,0) {\Huge $\emptyset$};
@@ -563,9 +577,9 @@ connaissance de l'arbre, tout en gardant la structure globale.
   \caption{Graphe répresentant les coûts pour passer d'une connaissance à
   l'autre -- En rouge : l'arbre couvrant minimal}
   \label{fig:grapheConnaissance}
-\end{figure}
+\end{figure}%}}}
 
-\begin{figure}
+\begin{figure}%{{{fig:arbreConnaissance
   \begin{tikzpicture}[scale=3]
     \node[connaissance] (es) at (1,2) {$\emptyset$};
     \node[connaissance] (k1) at (0,1) {Connaissance 1};
@@ -581,9 +595,9 @@ connaissance de l'arbre, tout en gardant la structure globale.
   \centering
   \caption{Arbre des versions de connaissance}
   \label{fig:arbreConnaissance}
-\end{figure}
+\end{figure}%}}}
 
-\begin{figure}
+\begin{figure}%{{{fig:arbreModifConnaissance
   \begin{tikzpicture}[scale=3]
     \node[connaissance] (es) at (1,2) {$\emptyset$};
     \node[connaissance] (k1) at (0,1) {$\diff$($\emptyset$, Conn.1)};
@@ -599,9 +613,28 @@ connaissance de l'arbre, tout en gardant la structure globale.
   \centering
   \caption{Arbre des variations de connaissance}
   \label{fig:arbreModifConnaissance}
-\end{figure}
+\end{figure}%}}}
+
+    \subsubsection{Gain}
+
+Cette amélioration diminue la place mémoire prise par la modélisation des
+connaissances. En effet, au lieu de stocker toutes les connaissances
+individuellement, on ne stocke que le minimum des variations entre elles.
+
+    \subsubsection{Limitations}
+
+Cette solution est difficile à mettre en place, et demande beaucoup de calculs,
+c'est un compromis entre quantité de calcul et place mémoire prise.
+
+Il faut faire le calcul des différences entre chaque connaissances, si il y a
+beaucoup de connaissances différentes le coût de faire le graphe méta est lourd.
+Il y a peut-être moyen de réduire le nombre de calculs en utilisant le fait que
+c'est une distance, avec l'inégalité triangulaire.
 
     \subsubsection{Formalisation}
+
+On va maintenant formaliser la modélisation, pour pouvoir expliciter les
+algorithmes qui utiliseront la structure.
 
 \paragraph{Versions de connaissances} Soit l'ensemble des versions de
 connaissances, $C = \set{G_k = (V_k, E_k) | V_k \subset V_\infty, E_k \subset
@@ -609,17 +642,15 @@ E_\infty, \forall k \in \N}$. Avec \gls{Vinf} l'ensemble des intersections de
 rues, et \gls{Einf} l'ensemble des tronçons de rues.
 
 \paragraph{Graphe des versions de connaissances} Soit le graphe des versions
-connaissances \gls{G}, avec \gls{C} l'ensemble des versions de connaissances.
-\gls{G} est un graphe complet, et les arêtes sont pondérées par la fonction
-\gls{poids} qui indique le nombre d'opération nécessaire pour passer d'une
-connaissance à l'autre. On donne un exemple d'un tel graphe sur la figure
-\ref{fig:grapheConnaissance}.
+connaissances \gls{G}. \gls{G} est un graphe complet, et les arêtes sont
+pondérées par la fonction \gls{poids} (Graphe Edit Distance) qui indique le
+nombre d'opération nécessaire pour passer d'une connaissance à l'autre. On donne
+un exemple d'un tel graphe sur la figure \ref{fig:grapheConnaissance}.
 
-\paragraph{Arbre des versions de connaissances} Soit \gls{F}, l'arbre couvrant,
-(i.e., le sous graphe connexe  et sans cycles) du graphe \gls{G} minimisant la
-fonction \gls{poids}(Graphe Edit Distance), la fonction qui compte le nombre
-d'opérations pour passer d'une version de connaissance à l'autre.  On donne un
-exemple d'\gls{avec} sur la figure \ref{fig:arbreConnaissance}.
+\paragraph{Arbre des versions de connaissances} Soit \gls{F}, l'arbre couvrant
+(i.e., le sous graphe connexe et sans cycles) du graphe \gls{G} minimisant la
+fonction \gls{poids}. On donne un exemple d'\gls{avec} sur la figure
+\ref{fig:arbreConnaissance}.
 
 \paragraph{Opérations de modifications} Soit deux graphes $G_i(V_i, E_i)$ et
 $G_j(V_j, E_j)$, on va définir la fonction \gls{diff} qui renvoie les
@@ -627,8 +658,8 @@ informations nécessaires pour passer du graphe $G_i$ au graphe $G_j$. On pose
 les ensembles suivants :
 
 \begin{itemize}
-  \item $V_{commun} =  V_i \cap V_j$
-  \item $E_{commun} =  E_i \cap E_j$
+  \item $V_{commun} = V_i \cap V_j$
+  \item $E_{commun} = E_i \cap E_j$
   \item $V_{supprime} = V_i \setminus V_{commun}$
   \item $E_{supprime} = E_i \setminus E_{commun}$
   \item $V_{ajoute} = V_j \setminus V_{commun}$
@@ -642,28 +673,31 @@ ensembles. Précisément $\diff(G_i,G_j) = (V_i \setminus V_j, E_i \setminus E_j
 V_j \setminus V_i, E_j \setminus E_i)$
 
 \paragraph{Arbre des variations de connaissances} L'\gls{avac} \gls{F'} est
-identique à l'\gls{avec} \gls{F} sauf que dans chaque nœud $G_k$ est remplacé
+identique à l'\gls{avec} \gls{F} sauf que dans chaque nœud, $G_k$ est remplacé
 par $\diff(\parent(G_k),G_k)$.
 
-\paragraph{Algorithmes de construction et de traitement} Soit la collection
-d'agents \gls{A}, ainsi qu'un ensemble d'instants \gls{T}. On suppose disposer
-d'une fonction \gls{connait} qui renvoie la connaissance d'un agent $a\in A$
-possède à l'instant $t\in T$ et d'une fonction \gls{majc} qui met à jour la
-connaissance d'un agent $a \in A$, à l'instant $t\in T$.
+\paragraph{Algorithmes de construction et de traitement} On va maintenant
+définir les algorithmes qu'on veut utiliser avec notre structure. Pour cela nous
+avons besoin de certaines structures et fonctions qui nous servent pour
+interagir avec la simulation. Soit la collection d'agents \gls{A}, ainsi qu'un
+ensemble d'instants \gls{T}. On suppose disposer d'une fonction \gls{connait}
+qui renvoie la connaissance d'un agent $a\in A$ possède à l'instant $t\in T$ et
+d'une fonction \gls{majc} qui met à jour la connaissance d'un agent $a \in A$, à
+l'instant $t\in T$.
 
 Les algorithmes à écrire :
 
 \begin{itemize}
-  \item Algorithme principale de la simulation
   \item Initialisation du graphe des versions de connaissances
   \item Initialisation de l'arbre des versions de connaissances
   \item Initialisation de l'arbre des variations de connaissances
   \item Ajout d'une nouvelle version de connaissance
-  \item Suppression d'une version de connaissance
-  \item Dijkstra \comment{L'algorithme est connu, mais il faut l'adapter}
+  \item Suppression d'une version de connaissance \comment{Pas fait}
+  \item Dijkstra
+  \item Algorithme principal de la simulation
 \end{itemize}
 
-\begin{algorithm}
+\begin{algorithm}%{{{initGVEC
   \caption{Construit le graphe des versions de connaissances à partir de la
   l'ensemble des versions de connaissances}
   \begin{algorithmic}
@@ -672,14 +706,14 @@ Les algorithmes à écrire :
       \State $E \gets \emptyset$
       \For{$(G_i,G_j) \in C \times C, i < j$}{}
         \State $e = (G_i, G_j, \poids(G_i,G_j))$
-        \State $E \gets E \cap {e}$
+        \State $E \gets E \cup \set{e}$
       \EndFor
       \State \Return \gls{G}
     \EndFunction
   \end{algorithmic}
-\end{algorithm}
+\end{algorithm}%}}}
 
-\begin{algorithm}
+\begin{algorithm}%{{{initAVEC
   \caption{Construit l'arbre des versions de connaissances à partir du graphes
   versions de connaissances}
   \begin{algorithmic}
@@ -689,9 +723,9 @@ Les algorithmes à écrire :
       \State \Return \gls{F}
     \EndFunction
   \end{algorithmic}
-\end{algorithm}
+\end{algorithm}%}}}
 
-\begin{algorithm}
+\begin{algorithm}%{{{initAVAC
   \caption{Construit l'arbre des variations de connaissances à partir de l'arbre
   des versions de connaissances}
   \begin{algorithmic}
@@ -700,8 +734,8 @@ Les algorithmes à écrire :
       \Function{ParcoursEnProfondeur}{$c_{courant}, c_{parent}, c'_{parent},
       C'_a, E'_a$}
         \State $c'_{courant} \gets \diff(c_{parent}, c_{courant})$
-        \State $C'_a \gets C'_a \cap \set{c'_{courant}}$
-        \State $E'_a \gets E'_a \cap \set{(c'_{parent}, c'_{courant})}$
+        \State $C'_a \gets C'_a \cup \set{c'_{courant}}$
+        \State $E'_a \gets E'_a \cup \set{(c'_{parent}, c'_{courant})}$
         \For{$c_i \in \enfants(c_{courant})$}{}
           \State $C'_a, E'_a \gets ParcoursEnProfondeur(c_i, c_{courant},
           c'_{courant}, C'_a, E'_a)$
@@ -713,10 +747,10 @@ Les algorithmes à écrire :
       \State \Return \gls{F'}
     \EndFunction
   \end{algorithmic}
-\end{algorithm}
+\end{algorithm}%}}}
 
-\begin{algorithm}
-  \caption{Crée la nouvelle connaissance lorsqu'un agent découvre qqch}
+\begin{algorithm}%{{{nouvelleConnaissance
+  \caption{Modifie l'\gls{avac} lorsque la connaissance d'un agent évolue}
   \begin{algorithmic}
     \Require \gls{F'}, $a$ un agent, $G'_d$ La modification de
     connaissance que l'agent découvre, $t$ l'instant avant lequel l'agent a fait
@@ -735,17 +769,55 @@ Les algorithmes à écrire :
       \EndFor
       \If{$found = False$} \Comment{Si la modification ne fait pas déjà partie
       de l'arbre}
-        \State $C' \gets C' \cap G'_d$ \Comment{On ajoute la nouvelle
+        \State $C' \gets C' \cup \set{G'_d}$ \Comment{On ajoute la nouvelle
         modification}
-        \State $E'_F \gets E'_F \cap (G'_k, G'_i)$
+        \State $E'_F \gets E'_F \cup \set{(G'_k, G'_i)}$
         \State $\majc(a, t+1, G'_d)$
       \EndIf
     \EndProcedure
   \end{algorithmic}
-\end{algorithm}
+\end{algorithm}%}}}
 
-\begin{algorithm}
-  \caption{Algorithme principale}
+\begin{algorithm}%{{{Dijkstra
+  \caption{Dijkstra}
+  \begin{algorithmic}
+    \Require \gls{F'}
+    \Function{Dijkstra}{$a$, $t$, $b$ le nœud de départ, $e$ le nœud d'arrivé}
+      \State $P \gets \emptyset$
+      \State $\forall v \in$ \gls{Vinf}, $d[v] \gets +\infty$
+      \State $d[b] \gets 0$
+      \State $\forall v \in$ \gls{Vinf}, $predecesseur[v] \gets \emptyset$
+      \State $G'_a \gets \connait(a,t)$
+      \State $P_G' \gets (\emptyset, G'_1 \dots G'_a)$ chemin des variations de
+      connaissances qui part de la racine et arrive à $G'_a$ dans l'arbre
+      \gls{F'} (\gls{avac}).
+      \While{$\exists v \notin P$}
+        \State $v \gets$ Choisir un nœud en dehors de $P$ et avec $d[v]$ minimal
+        \State $P \gets P \cup \set{v}$
+        \State $N_v \gets \emptyset$
+        \For{$G'_k \in P_G'$}
+          \State $N_v \gets N_v \cup \set{\text{Les voisins que $G'_k$ ajoute}}$
+          \State $N_v \gets N_v \setminus \set{\text{Les voisins que $G'_k$
+          enlève}}$
+        \EndFor
+        \For{$s \in N_v$ et $s \notin P$}
+          \If{$d[s] > d[v] + \dist(v,s)$}
+            \State $d[s] \gets d[v]+\dist(v,s)$
+            \State $predecesseur[s] \gets v$
+          \EndIf
+        \EndFor
+      \EndWhile
+      \State $path \gets (e)$
+      \While{$predecesseur[path[0]] \neq \emptyset$}
+        \State $path \gets predecesseur[path[0]] + path$
+      \EndWhile
+      \State \Return $path$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}%}}}
+
+\begin{algorithm}%{{{Algorithme principal
+  \caption{Algorithme principal}
   \begin{algorithmic}
     \State Initialiser les agents $A$
     \State Initialiser les instants $T$
@@ -755,6 +827,11 @@ Les algorithmes à écrire :
     \State \gls{F'} $\gets$ \Call{initAVAC}{\gls{F}}
     \For{$t \in T$}
       \For{$a \in A$}
+        \If{$a$ ne sait pas quel chemin emprunter}
+          \State $path$ = \Call{Dijkstra}{$a, t$, le nœud où se trouve $a$, le
+          nœud où $a$ veut aller}
+          \State Stocker dans l'agent le chemin ($path$) à emprunter
+        \EndIf
         \State Faire avancer l'agent $a$
         \If{$a$ découvre une modification de connaissance $G'_d$}
           \State \Call{nouvelleConnaissance}{$a, t, G'_d$}
@@ -762,46 +839,81 @@ Les algorithmes à écrire :
       \EndFor
     \EndFor
   \end{algorithmic}
-\end{algorithm}
-
-    \subsubsection{Gain}
-
-Cette amélioration diminue la place mémoire prise par la modélisation des
-connaissances. De plus, la plupart des calculs ajoutés peuvent être fait avant
-la simulation.
-
-    \subsubsection{Limitations}
-
-Cette solution est difficile à mettre en place, et demande beaucoup de calculs,
-c'est un compromis entre quantité de calcul et place mémoire prise.
-
-Il faut faire le calcul des différences entre chaque connaissances, si il y a
-beaucoup de connaissances différentes le coût de faire le graphe méta est lourd.
-Il y a peut-être moyen de réduire le nombre de calculs en utilisant le fait que
-c'est une distance, avec l'inégalité triangulaire.
-
-\comment{Et le calcul exacte de la \emph{graph edit distance} est NP-complet...
-Mince. Mais non, ça peut pas être aussi difficile... Si on a tous les labels des
-nœuds... Il faut chercher l'algorithme}
-
-L'algorithme de Dijkstra est peut-être difficile à adapter sur une telle
-structure.
+\end{algorithm}%}}}
 
 \section{Conclusion}
 
-On a vu une solution naïve, ainsi que plusieurs améliorations envisageables. Les
-deux grandes catégories d'améliorations sont celles qui changent la façon dont
-on modélise l'espace et celle qui change la façon dont on organise les
-connaissances des individus. Ces deux catégories d'améliorations ne sont pas
-exclusives, on peut combiner une amélioration d'une catégorie avec l'autre.
+On a cherché à modéliser la connaissance de l'espace de la ville que peuvent
+avoir plusieurs agents dans une simulation multi-agents. L'idée est de faire une
+modélisation aussi proche de la réalité que possible tout en étant suffisamment
+peu gourmand en ressource pour être utilisable dans une simulation temps réel.
 
-On doit encore travailler sur la façon dont on calcul la différence entre deux
-graphes (i.e., les fonctions \gls{diff} et \gls{poids}).
+On a donc commencé par explicité une solution naïve qui est très proche de la
+réalité, mais dont la complexité en temps et en mémoire et si grande qu'il n'est
+pas envisageable de l'implémenter. Ainsi on a proposés plusieurs améliorations
+envisageables. On discerne deux grandes catégories d'améliorations, celles qui
+changent la façon dont on modélise l'espace et celle qui change la façon dont on
+organise les connaissances des agents. Ces deux catégories d'améliorations ne
+sont pas exclusives, on peut combiner une amélioration qui change la
+modélisation de l'espace avec une amélioration qui change l'organisation des
+connaissances des agents.
 
-On doit aussi voir comment on veut calculer l'arbre couvrant minimale. Il existe
-plusieurs algorithmes, dont certains plus rapide que d'autres.
+Dans la catégorie des améliorations de la modélisation de l'espace, on a évoqué
+une stratégie consistant à utiliser un graphe où les rues sont représentés par
+les nœuds et deux nœuds sont connectés si les rues qu'ils représentent
+s'intersectent. On a aussi vu qu'on pourrait découper l'espace en quartier et
+utiliser des principes de réseaux multi échelles pour diminuer le nombre de
+calculs.
 
-\comment{- Rappel sujet \\ - Solution mise en œuvre \\ - bilan/perspective}
+Dans la catégorie des améliorations traitant de l'organisation de la
+connaissances des agents, nous avons vu deux idées qui se combinent en une
+troisième. Ces deux idées sont d'une part la mise en commun de la connaissance,
+c'est-à-dire qu'on stocke toutes les versions de connaissances dans une
+structure, puis on indique dans chaque agent quel version de connaissance il
+possède. Cela évite de stocker deux fois la même version de connaissance lorsque
+deux agents ont la même connaissance. D'autre part on propose de ne pas stocker
+les connaissances entières dans chaque agent, mais plutôt de ne stocker que la
+différence entre une connaissance commune et la connaissance de l'agent.
+
+C'est deux idées se combinent en une structure que l'on a appelé l'\gls{avac}On
+s'est particulièrement intéressé à cette organisation de la connaissances des
+agents. L'\gls{avac} consiste en un arbre où l'on encode les variations entre
+les connaissances des agents plutôt que d'encoder leurs connaissances entières.
+On a donné les algorithmes qui, avec les connaissances, permettent de construire
+cet arbre, ainsi que deux algorithmes utiles durant la simulation. L'un permet
+de modifier la structure lorsqu'un agent découvre nouvel espace. L'autre permet
+d'utiliser la structure pour calculer le plus court chemins connu d'un agent
+pour aller d'un point à un autre. On donne aussi un exemple sommaire
+d'algorithme de simulation utilisant cette structure.
+
+Cependant il reste des zones d'ombres à explorer à propos de l'\gls{avac}. On
+doit encore travailler sur la façon dont on calcul la différence entre deux
+graphes (i.e., les fonctions \gls{diff} et \gls{poids}). Il existe beaucoup
+d'études sur la fonction \gls{poids}, en effet elle est beaucoup utilisé pour
+calculer la similarité entre deux graphes. Ce qui est notamment utile pour faire
+de la reconnaissance de motifs. Il faudrait faire un état de l'art pour savoir
+quelle complexité ces calculs vont avoir dans la situation où l'on se
+trouve.\comment{Il me semble qu'on est dans un cas particulier du calcul de la
+GED, est-ce que je le dis, même si je ne suis pas sûr ?}
+
+On doit aussi voir comment on veut calculer l'arbre couvrant minimal. Il existe
+plusieurs algorithmes, dont certains plus rapide que d'autres. Il y a déjà les
+algorithmes gloutons comme l'algorithme de Borůvka qui ont une complexité en
+$O(A\ln(S))$ avec $A$ le nombre d'arêtes et $S$ le nombre de sommets. Il existe
+aussi des algorithmes qui ont des complexités linéaires avec le nombre d'arêtes,
+avec certaines contraintes sur le graphe de départ. Le soucis est que le nombre
+d'arêtes dans notre graphe est assez grand puisqu'on a un graphe dense. Il faut
+aussi considérer que les poids qui sont dur les arêtes entre les nœuds sont des
+poids, ils respectent donc l'inégalité triangulaire. Ces inégalités nous donne
+des informations qui peuvent être utile pour calculer l'arbre couvrant de poids
+minimal.
+
+On doit s'intéresser à la complexité. Pour l'instant aucune implémentation n'a
+été faite et aucune étude précise de la complexité des algorithmes à appliquer
+sur la structure. Il faut un cadre théorique pour mesurer les différentes
+complexité des solutions. Il faut aussi vérifier ces complexités théoriques par
+une implémentation pratique et une batterie de tests. \comment{Étoffer ce
+paragraphe}
 
 \printnoidxglossary[sort=def]
 
